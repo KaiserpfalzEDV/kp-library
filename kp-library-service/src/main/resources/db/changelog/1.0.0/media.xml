@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="schema" author="rlichti">
+        <sql dbms="h2, mysql, mariadb, postgresql" endDelimiter=";">
+            CREATE SCHEMA IF NOT EXISTS LIBRARY
+        </sql>
+        <comment>Create SCHEMA for library data.</comment>
+    </changeSet>
+    
+    <changeSet id="20230119-rlichti-001" author="rlichti">
+        <createTable tableName="MEDIA" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="MEDIA_ID_UK"
+                             primaryKey="true" primaryKeyName="MEDIA_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED" type="TIMESTAMP"/>
+            <column name="REVISIONED" type="TIMESTAMP"/>
+
+            <column name="NAMESPACE" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="MEDIA_NAMESPACE_NN"/>
+            </column>
+            <column name="NAME" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="MEDIA_NAME_NN"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint
+                constraintName="MEDIA_NAME_UK"
+                tableName="MEDIA"
+                schemaName="LIBRARY"
+                columnNames="NAMESPACE,NAME"/>
+
+        <rollback>
+            <dropUniqueConstraint schemaName="LIBRARY" tableName="MEDIA" constraintName="MEDIA_NAME_UK"/>
+            <dropUniqueConstraint schemaName="LIBRARY" tableName="MEDIA" constraintName="MEDIA_ID_UK"/>
+            <dropNotNullConstraint schemaName="LIBRARY" tableName="MEDIA" constraintName="MEDIA_NAMESPACE_NN"/>
+            <dropNotNullConstraint schemaName="LIBRARY" tableName="MEDIA" constraintName="MEDIA_NAME_NN"/>
+            <dropPrimaryKey schemaName="LIBRARY" tableName="MEDIA" constraintName="MEDIA_PK"/>
+            <dropTable schemaName="LIBRARY" tableName="MEDIA"/>
+        </rollback>
+
+        <comment>Table for handling media data.</comment>
+    </changeSet>
+</databaseChangeLog>

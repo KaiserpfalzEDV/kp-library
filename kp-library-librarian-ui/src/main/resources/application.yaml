@@ -1,0 +1,272 @@
+---
+quarkus:
+  application:
+    name: dcis-ui
+    version: 2.0.0
+    ui-header: ${quarkus.application.name}/${quarkus.application.version}
+    api-version: "v1"
+  default-locale: "de"
+
+  log:
+    metrics:
+      enabled: true
+    console:
+      enable: true
+      json:
+        ~: true
+        pretty-print: true
+        print-details: true
+    level: WARN
+    min-level: ALL
+    category:
+      "de.paladinsinn":
+        level: INFO
+      "de.kaiserpfalzedv":
+        level: INFO
+      http-problem:
+        level: INFO
+      "org.atmosphere":
+        level: WARN
+
+  logging-manager:
+    enable: true
+    ui:
+      enable: true
+
+  hibernate-orm:
+    enabled: false
+
+
+  http:
+    insecure-requests: REDIRECT
+    port: 8080
+    ssl-port: 8443
+    ssl:
+      protocols: TLSv1.3
+      sni: true
+      certificate:
+        key-files:
+          - /opt/app-root/config/tls/tls.key
+        files:
+          - /opt/app-root/config/tls/tls.crt
+
+    access-log:
+      enabled: true
+      log-to-file: false
+      exclude-pattern: "/(q|VAADIN)/.*"
+      pattern: combined
+
+    proxy:
+      proxy-address-forwarding: true
+      allow-forwarded: false
+      enable-forwarded-host: true
+      forwarded-host-header: X-ORIGINAL-HOST
+
+    test-port: 9080
+    test-ssl-port: 9443
+    enable-compression: true
+    enable-decompression: true
+    record-request-start-time: true
+
+    body:
+      delete-uploaded-files-on-end: true
+      handle-file-uploads: true
+      preallocate-body-buffer: true
+      merge-form-attributes: true
+
+    auth:
+      proactive: true
+      policy:
+        metrics:
+          roles-allowed: metrics
+      permission:
+        metrics:
+          paths: /q/*
+#          policy: metrics
+          policy: permit
+        sw-js:
+          paths: /sw.js
+          policy: permit
+        protected:
+          paths: /*
+          policy: authenticated
+      basic: false
+      form:
+        enabled: false
+    cors: true
+
+  keycloak:
+    policy-enforcer:
+      enable: true
+
+  oidc:
+    enabled: true
+    application-type: HYBRID
+    auth-server-url: ${OIDC_URL}
+    client-id: ${OIDC_CLIENT}
+    credentials:
+      secret: ${OIDC_SECRET}
+    roles:
+      source: idtoken
+    authentication:
+      cookie-path: "/"
+      cookie-force-secure: true
+      cookie-domain: ${OIDC_COOKIE_DOMAIN}
+      add-openid-scope: true
+      scopes:
+        - openid
+        - phone
+        - email
+        - roles
+        - profile
+        - roles
+    logout:
+      path: "/logout"
+      post-logout-path: "/"
+      backchannel:
+        path: "/back-channel-logout"
+      frontchannel:
+        path: "/front-channel-logout"
+  oidc-client:
+    enabled: true
+    early-tokens-acquisition: false
+    auth-server-url: ${OIDC_URL}
+    client-id: ${OIDC_CLIENT}
+    credentials:
+      secret: ${OIDC_SECRET}
+  oidc-token-propagation:
+    enabled: true
+    register-filter: false
+    exchange-token: false
+  oidc-client-filter:
+    register-filter: false
+
+
+  security:
+    users:
+      embedded:
+        enabled: false
+
+  datasource:
+    jdbc: false
+
+  smallrye-health:
+    ui:
+      enable: true
+
+
+  micrometer:
+    enabled: true
+    registry-enabled-default: true
+    binder-enabled-default: true
+    binder:
+      http-server:
+        enabled: true
+      mp-metrics:
+        enabled: true
+      jvm: true
+      system: true
+      vertx:
+        enabled: true
+    export:
+      json:
+        enabled: true
+        path: /q/json-metrics
+      prometheus:
+        enabled: true
+        path: /q/metrics
+        default-registry: true
+
+  container-image:
+    name: delphi-council-webui
+    tag: ${quarkus.application.version}
+  openshift:
+    deployment-kind: Deployment
+
+  devservices:
+    enabled: false
+  banner:
+    enabled: true
+
+
+
+"%dev":
+  quarkus:
+    log: &log-dev
+      console:
+        json: false
+        enable: true
+        format: "%d{HH:mm:ss.SSS} %-5p [%c{2.}] (%t) %s%e%n"
+      level: INFO
+      min-level: ALL
+      category:
+        "de.kaiserpfalzedv":
+          level: ALL
+        "de.paladinsinn":
+          level: ALL
+        http-problem:
+          level: INFO
+        "io.quarkus.oidc.runtime.OidcProvider":
+          level: TRACE
+        "io.quarkus.oidc.runtime.OidcRecorder":
+          level: TRACE
+
+    tls: &tls-dev
+      trust-all: true
+    http: &http-dev
+      insecure-requests: REDIRECT
+      port: 8080
+      ssl-port: 8443
+      ssl:
+        protocols: TLSv1.3
+        sni: true
+        certificate:
+          key-files:
+            - tls/tls.key
+          files:
+            - tls/tls.crt
+      auth:
+        basic: false
+
+
+"%test":
+  quarkus:
+    log: *log-dev
+    http: *http-dev
+    tls: *tls-dev
+
+imprint:
+  represented: Name
+  mstv: |-
+    Name
+    Street
+    Post Code and City
+    Country
+  rstv: |-
+    Name
+    Street
+    Post Code and City
+    Country
+  contact: |-
+    Telefon: number
+    Fax: number
+    E-Mail: email address
+  addition: |-
+    This product was created under license from Ulisses Spiel und Medien GmbH. 
+    Torg Eternity, its respective logos, as well as *Torg, Torg Eternity, Infiniverse, Possibility Wars, 
+    Storm Knight, Aysle, Cyberpapacy, Living Land, Nile Empire, Orrorsh, Pan-Pacfifica, Tharkold,* and 
+    their respective logos, are trademarks of Ulisses Spiel und Medien GmbH. 
+    
+    No part of this publication may be reproduced, stored in retrieval systems, or transmitted, in any 
+    form or by any means, without written consent from Ulisses Spiel und Medien GmbH.
+
+vaadin:
+  launch-browser: true
+  whitelisted-packages:
+    - com.vaadin
+    - org.vaadin
+    - dev.hilla
+    - de.paladinsinn.tp.dcis.ui
+    - com.github.appreciated.apexcharts
+    - com.wontlost
+
