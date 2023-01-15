@@ -39,17 +39,12 @@
 
         <dependency>
             <groupId>de.kaiserpfalz-edv.commons</groupId>
-            <artifactId>kp-commons-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons</groupId>
             <artifactId>kp-commons-rest</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
         </dependency>
 
 
@@ -92,6 +87,10 @@
             <version>1.0.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-cache</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>

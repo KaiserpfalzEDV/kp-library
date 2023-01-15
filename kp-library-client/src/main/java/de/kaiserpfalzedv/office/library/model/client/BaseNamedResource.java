@@ -15,19 +15,37 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model;
+package de.kaiserpfalzedv.office.library.model.client;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasKind;
-import de.kaiserpfalzedv.commons.core.resources.HasName;
 import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
+import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>Medium -- A generic medium (weather physical or virtual).</p>
+ * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Medium extends EAN, HasId, HasRecord, HasKind, HasNameSpace, HasName {
+@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
+@Slf4j
+public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
+    @ToString.Include
+    /** The namespace of this resource. */
+    private String nameSpace;
+
+    @ToString.Include
+    /** The name of this resource. */
+    private String name;
 }

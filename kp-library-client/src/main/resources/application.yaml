@@ -1,18 +1,19 @@
 ---
 api-server: &api
-  url: https://api.delphi-council.org/
+  url: https://api.library.paladins-inn.org/
   scope: javax.inject.Singleton
 
 dev-api-server: &dev-api
-  url: https://localhost:8444/
+  url: https://localhost:8445/
   scope: javax.inject.Singleton
 
 test-api-server: &test-api
-  url: https://localhost:8444/
+  url: https://localhost:8445/
   scope: javax.inject.Singleton
 
 quarkus:
   rest-client:
+
     mission-api: *api
     mission-report-api: *api
     special-mission-api: *api

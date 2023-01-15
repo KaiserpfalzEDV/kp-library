@@ -28,35 +28,45 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
 /**
  * <p>Location -- A location for a resource.</p>
  *
+ * <p>The location is a recursive data type. It has a pointer to the enclosing location and the directly enclosed
+ * locations. The whole interface defaults to a virtual location with neither enclosed nor enclosing locations.</p>
+ *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
 public interface Location extends HasId, HasNameSpace, HasName, HasDisplayName, HasRecord {
     /**
-     * @return The type of the location.
+     * @return The type of the location. Defaults to {@link  Type#VIRTUAL}.
      */
-    Type getLocationType();
+    default Type getLocationType() {
+        return Type.VIRTUAL;
+    }
 
     /**
      * A location is normally part of another location. So a shelf is sitting in a room which is part of a building
      * which may be part of a campus.
      *
-     * @return the enclosing location of this location.
+     * @return the enclosing location of this location. Defaults to {@link Optional#empty()}.
      */
-    Optional<Location> getPartOf();
+    default Optional<Location> getPartOf() {
+        return Optional.empty();
+    }
 
     /**
      * A location can be the enclosure for other locations. This will create a tree.
      *
-     * @return the directly enclosed locations.
+     * @return the directly enclosed locations. Defaults to {@link Collections#emptySet()}.
      */
-    Set<Location> getSubLocations();
+    default Set<Location> getSubLocations() {
+        return Collections.emptySet();
+    }
 
 
     @Schema(
@@ -69,7 +79,7 @@ public interface Location extends HasId, HasNameSpace, HasName, HasDisplayName, 
     )
     @RequiredArgsConstructor
     @Getter
-    public enum Type {
+    enum Type {
         @JsonEnumDefaultValue
         SHELF("library.location.type.shelf"),
         ROOM("library.location.type.room"),

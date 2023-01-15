@@ -15,19 +15,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model;
+package de.kaiserpfalzedv.office.library.model.client;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
- * <p>Book -- A printed book.</p>
+ * <p>Medium -- Client implementation for {@link de.kaiserpfalzedv.office.library.model.Medium}.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
+@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
+public abstract class Medium extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.Medium {
 
-    @Override
-    default String getKind() {
-        return KIND;
-    }
 }

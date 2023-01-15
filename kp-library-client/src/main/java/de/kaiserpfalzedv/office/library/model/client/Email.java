@@ -15,19 +15,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model;
+package de.kaiserpfalzedv.office.library.model.client;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
- * <p>Book -- A printed book.</p>
+ * <p>Email -- The client implementation for {@link de.kaiserpfalzedv.office.library.api.Email}</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
+@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
+@EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
+public class Email implements de.kaiserpfalzedv.office.library.api.Email {
+    private String localPart;
+    private String domain;
 
     @Override
-    default String getKind() {
-        return KIND;
+    public String getMailAddress() {
+        return localPart + "@" + domain;
     }
 }

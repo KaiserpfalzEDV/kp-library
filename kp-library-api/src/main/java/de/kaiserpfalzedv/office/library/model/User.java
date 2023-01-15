@@ -17,17 +17,20 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import de.kaiserpfalzedv.commons.core.resources.HasId;
+import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
+import de.kaiserpfalzedv.office.library.api.Email;
+import de.kaiserpfalzedv.office.library.api.HasDisplayName;
+import de.kaiserpfalzedv.office.library.api.HasRecord;
+
 /**
- * <p>Book -- A printed book.</p>
+ * <p>User -- A user of the library.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
+public interface User extends HasId, HasRecord, HasDisplayName, HasNameSpace {
+    String getIdpUser();
 
-    @Override
-    default String getKind() {
-        return KIND;
-    }
+    Email getEmail();
 }

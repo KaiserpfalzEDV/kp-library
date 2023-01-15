@@ -17,17 +17,27 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import de.kaiserpfalzedv.commons.core.resources.HasId;
+
+import javax.validation.constraints.NotNull;
+import java.time.OffsetDateTime;
+
 /**
- * <p>Book -- A printed book.</p>
+ * <p>AssetBorrow -- Active borrow of an asset.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
+public interface AssetBorrow extends HasId {
+    @NotNull
+    User getUser();
 
-    @Override
-    default String getKind() {
-        return KIND;
-    }
+    @NotNull
+    Asset getAsset();
+
+    @NotNull
+    OffsetDateTime getBorrowTime();
+
+    @NotNull
+    OffsetDateTime getLatestReturnTime();
 }

@@ -15,19 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model;
+package de.kaiserpfalzedv.office.library.api;
+
+import java.io.Serializable;
 
 /**
- * <p>Book -- A printed book.</p>
+ * <p>Email -- An email address and supporting functions.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
-
-    @Override
-    default String getKind() {
-        return KIND;
-    }
+public interface Email extends Serializable {
+    String getMailAddress();
 }

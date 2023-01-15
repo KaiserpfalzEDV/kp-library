@@ -11,8 +11,12 @@ This is a small library management service.
 
 
 ## License
-The license for the software is LGPL 3.0 or newer. Parts of the software may be licensed under other licences like MIT
+The license for the software is GPL 3.0 or newer. Parts of the software may be licensed under other licences like MIT
 or Apache 2.0 - the files are marked appropriately. 
+
+The kp-library-api and kp-library-client is also co-licensed on LGPL 3.0 or newer.
+
+Some javadoc documentation contains information from https://www.wikipedia.org(Wikipedia).
 
 ## Architecture
 
@@ -27,14 +31,14 @@ wrong. Every line that needs not be written is a bug free line without need to t
 
 
 ## Distribution
-Currently there is no distribution of this software.
+There is no distribution of this software. You need to build it from the sources.
 
 
 ## Note from the author
 This software is meant do be perfected not finished.
 
 If someone is interested in getting it faster, we may team up. I'm open for that. But be warned: I want to do it 
-_right_. So no short cuts to get faster. And be prepared for some basic discussions about the architecture or software 
+_right_. So no shortcuts to get faster. And be prepared for some basic discussions about the architecture or software 
 design :-).
 
 ---

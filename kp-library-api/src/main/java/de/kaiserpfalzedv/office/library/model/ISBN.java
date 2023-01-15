@@ -17,8 +17,8 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Optional;
 
 /**
  * <p>ISBN -- International Standard Book Number</p>
@@ -43,16 +43,25 @@ import java.util.Optional;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface ISBN extends Serializable {
+public interface ISBN extends EAN, Serializable {
     /**
      * The valid ISBN of a book.
      * @return The ISBN of the book.
      */
+    @NotNull
     String getIsbn13();
 
     /**
      * If the book still has a ISBN-10 code this method will return it.
      * @return The ISBN-10 code (if existing).
      */
-    Optional<String> getIsbn10();
+    @NotNull
+    default String getIsbn10() {
+        return getIsbn13().substring(4);
+    }
+
+    @Override
+    default String getEAN() {
+        return getIsbn13();
+    }
 }

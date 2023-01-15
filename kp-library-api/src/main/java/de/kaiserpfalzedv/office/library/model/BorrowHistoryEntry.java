@@ -17,17 +17,22 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import de.kaiserpfalzedv.commons.core.resources.HasId;
+
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
 /**
- * <p>Book -- A printed book.</p>
+ * <p>BorrowHistoryEntry -- An entry of a borrow event.</p>
+ *
+ * <p>The history of an asset consists of these borrow events.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Book extends Medium, ISBN {
-    String KIND = "book";
-
-    @Override
-    default String getKind() {
-        return KIND;
-    }
+public interface BorrowHistoryEntry extends HasId {
+    UUID getUser();
+    UUID getAsset();
+    OffsetDateTime getBorrowDate();
+    OffsetDateTime getReturnDate();
 }
