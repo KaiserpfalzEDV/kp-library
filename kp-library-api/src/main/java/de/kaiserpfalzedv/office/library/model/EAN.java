@@ -44,5 +44,5 @@ public interface EAN {
      * @return The EAN number of this medium.
      */
     @NotNull
-    String getEAN();
+    String getEan();
 }

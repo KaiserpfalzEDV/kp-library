@@ -15,27 +15,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.client;
+package de.kaiserpfalzedv.office.library.mapper;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
+import de.kaiserpfalzedv.commons.core.api.BaseSystemException;
+import lombok.Getter;
 
 /**
- * <p>User -- The client implementation for {@link de.kaiserpfalzedv.office.library.model.User}.</p>
+ * <p>LibraryClientException -- The base runtime exception for the whole library client</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
- * @since 1.0.0  2023-01-15
+ * @since 1.0.0  2023-01-17
  */
-@Jacksonized
-@SuperBuilder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@ToString(callSuper = true, onlyExplicitlyIncluded = true)
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class User extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.User {
-    private Email email;
+public abstract class LibraryClientException extends BaseSystemException {
+    @Getter
+    private final int code;
+
+    public LibraryClientException(final int code, final String message) {
+        super(message);
+
+        this.code = code;
+    }
+
+    public LibraryClientException(final int code, final String message, Throwable cause) {
+        super(message, cause);
+
+        this.code = code;
+    }
 }

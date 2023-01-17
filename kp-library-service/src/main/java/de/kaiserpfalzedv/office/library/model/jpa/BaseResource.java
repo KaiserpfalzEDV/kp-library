@@ -15,39 +15,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.client;
+package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
+import de.kaiserpfalzedv.commons.jpa.AbstractRevisionedJPAEntity;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.persistence.MappedSuperclass;
+
 /**
- * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>
+ * <p>BaseResource -- A base resource information for the kp-library client.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
 @Jacksonized
+@MappedSuperclass
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@ToString(callSuper = true, onlyExplicitlyIncluded = true)
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @Slf4j
-public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
-    @ToString.Include
-    /** The namespace of this resource. */
-    private String nameSpace;
-
-    @ToString.Include
-    /** The name of this resource. */
-    private String name;
-}
+public abstract class BaseResource extends AbstractRevisionedJPAEntity implements HasRecord {}

@@ -15,26 +15,38 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.client;
+package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.office.library.model.Medium;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.annotation.Nullable;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * <p>Asset -- The client implementation of {@link de.kaiserpfalzedv.office.library.model.Asset}.</p>
+ * <p>Asset -- The JPA implementation of {@link de.kaiserpfalzedv.office.library.model.Asset}.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Schema(
+        title = "Asset",
+        description = "The single asset that can be borrowed."
+)
+@Entity
+@Table(
+        name = "ASSETS",
+        schema = About.DB_SCHEMA,
+        uniqueConstraints = {
+                @UniqueConstraint(name = "ASSETS_MEDIUM_UK", columnNames = {"MEDIUM_ID", "COUNTER"})
+        }
+)
 @Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
@@ -44,19 +56,44 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class Asset extends BaseResource implements de.kaiserpfalzedv.office.library.model.Asset {
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE},
+            fetch = FetchType.EAGER,
+            optional = false
+    )
+    @JoinColumn(
+            name = "MEDIUM_ID", nullable = false,
+            referencedColumnName = "ID",
+            foreignKey = @ForeignKey(name = "ASSETS_MEDIUMS_FK")
+    )
     private Medium medium;
+    @Column(name = "COUNTER", nullable = false)
     private int counter;
 
+
+    @ManyToOne(optional = false)
+    @JoinColumn(
+            name = "LOCATION_ID", nullable = false,
+            referencedColumnName = "ID",
+            foreignKey = @ForeignKey(name = "ASSETS_LOCATIONS_FK")
+    )
     private Location location;
+
+    @Column(name = "ACQUIREMENT_DATE", nullable = false)
     private ZonedDateTime acquirementDate;
 
-    @Nullable
-    private UUID currentBorrow;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "asset")
+    private AssetBorrow currentBorrow;
 
 
     @JsonIgnore
+    @Transient
     @Override
     public Optional<UUID> getCurrentBorrow() {
-        return Optional.ofNullable(currentBorrow);
+        if (currentBorrow == null) {
+            return Optional.empty();
+        }
+
+        return Optional.ofNullable(currentBorrow.getId());
     }
 }

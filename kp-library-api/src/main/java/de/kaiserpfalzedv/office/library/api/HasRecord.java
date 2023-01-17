@@ -26,7 +26,7 @@ import java.time.OffsetDateTime;
  * @since 1.0.0  2023-01-15
  */
 public interface HasRecord {
-    Long getVersion();
+    Integer getVersion();
     OffsetDateTime getCreated();
     OffsetDateTime getModified();
     OffsetDateTime getRevisioned();

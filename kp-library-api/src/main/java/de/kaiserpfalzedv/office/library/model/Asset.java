@@ -25,6 +25,7 @@ import de.kaiserpfalzedv.office.library.api.HasLocation;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * <p>Asset -- A single asset of the library.</p>
@@ -39,7 +40,7 @@ public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDispla
     @Min(0)
     int getCounter();
 
-    Optional<AssetBorrow> getCurrentBorrow();
+    Optional<UUID> getCurrentBorrow();
 
     default String getName() {
         return getMedium().getName();
@@ -50,7 +51,7 @@ public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDispla
      */
     @Override
     default String getDisplayName() {
-        return getMedium().getName() + createCounterPostfix();
+        return getName() + createCounterPostfix();
     }
 
     @Override
@@ -62,6 +63,7 @@ public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDispla
         }
     }
 
+    @NotNull
     private String createCounterPostfix() {
         return getCounter() == 0 ? "" : " (" + getCounter() + ")";
     }

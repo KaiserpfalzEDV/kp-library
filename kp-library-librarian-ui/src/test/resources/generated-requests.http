@@ -1,0 +1,2 @@
+###
+GET {{host}}/api?token={{token}}&op=barcode-lookup&format=json&language=3&ean=4002998017271

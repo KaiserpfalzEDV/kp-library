@@ -15,24 +15,38 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.client;
+package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import lombok.extern.slf4j.Slf4j;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>
+ * <p>User -- The JPA implementation for {@link de.kaiserpfalzedv.office.library.model.User}.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Schema(
+        title = "User",
+        description = "A user of the library management system. Librarians don't need to be users."
+)
+@Entity
+@Table(
+        name = "USERS",
+        schema = "IAM",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "USER_NAME_UK", columnNames = {"NAMESPACE","NAME"}),
+                @UniqueConstraint(name = "USER_EMAIL_UK", columnNames = {"EMAIL_LOCAL_PART", "EMAIL_DOMAIN"})
+        }
+)
 @Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
@@ -41,13 +55,12 @@ import lombok.extern.slf4j.Slf4j;
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@Slf4j
-public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
-    @ToString.Include
-    /** The namespace of this resource. */
-    private String nameSpace;
+public class User extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.User {
+    @Embedded
+    @NotNull
+    private Email email;
 
-    @ToString.Include
-    /** The name of this resource. */
-    private String name;
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+    @Builder.Default
+    private Set<AssetBorrow> currentBorrows = new HashSet<>();
 }

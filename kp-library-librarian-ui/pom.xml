@@ -13,68 +13,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>torganized-play</artifactId>
-        <groupId>de.paladins-inn.torganized</groupId>
+        <artifactId>kp-library-parent</artifactId>
+        <groupId>de.kaiserpfalz-edv.office.library</groupId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../kp-library-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>delphi-council-webui</artifactId>
-    <name>PI :: Torganized Play :: Delphi Council WebUI</name>
+    <artifactId>kp-library-librarian-ui</artifactId>
+    <name>KP Library :: UI :: Librarian</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-push</artifactId>
-            <version>23.3.2</version>
+            <groupId>de.kaiserpfalz-edv.office.library</groupId>
+            <artifactId>kp-library-client</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>de.paladins-inn.torganized</groupId>
-            <artifactId>delphi-council-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.paladins-inn.torganized</groupId>
-            <artifactId>delphi-council-client</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-liquibase</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-hibernate-envers</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-hibernate-orm-panache</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-db2</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-h2</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-mariadb</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-mssql</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-oracle</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.quarkus</groupId>
-                    <artifactId>quarkus-jdbc-postgresql</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>de.kaiserpfalz-edv.commons</groupId>
+            <artifactId>kp-commons-ean-search</artifactId>
         </dependency>
 
         <dependency>
@@ -83,6 +38,12 @@
         </dependency>
 
         <!-- vaadin components -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-push</artifactId>
+            <version>23.3.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.wontlost</groupId>
             <artifactId>ckeditor-vaadin</artifactId>

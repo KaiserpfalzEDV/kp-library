@@ -49,7 +49,9 @@ public interface ISBN extends EAN, Serializable {
      * @return The ISBN of the book.
      */
     @NotNull
-    String getIsbn13();
+    default String getIsbn13() {
+        return getEan();
+    }
 
     /**
      * If the book still has a ISBN-10 code this method will return it.
@@ -58,10 +60,5 @@ public interface ISBN extends EAN, Serializable {
     @NotNull
     default String getIsbn10() {
         return getIsbn13().substring(4);
-    }
-
-    @Override
-    default String getEAN() {
-        return getIsbn13();
     }
 }

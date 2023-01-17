@@ -1,6 +1,6 @@
 ---
 api-server: &api
-  url: https://api.library.paladins-inn.org/
+  url: ${LIBRARY_API_URL}
   scope: javax.inject.Singleton
 
 dev-api-server: &dev-api
@@ -13,30 +13,23 @@ test-api-server: &test-api
 
 quarkus:
   rest-client:
-
-    mission-api: *api
-    mission-report-api: *api
-    special-mission-api: *api
-    operative-api: *api
-    operative-report-api: *api
-    operative-special-report-api: *api
+    "de.kaiserpfalzedv.office.library.client.AssetClient": *api
+    "de.kaiserpfalzedv.office.library.client.BorrowClient": *api
+    "de.kaiserpfalzedv.office.library.client.LocationClient": *api
+    "de.kaiserpfalzedv.office.library.client.UserClient": *api
 
 "%dev":
   quarkus:
     rest-client:
-      mission-api: *dev-api
-      mission-report-api: *dev-api
-      special-mission-api: *dev-api
-      operative-api: *dev-api
-      operative-report-api: *dev-api
-      operative-special-report-api: *dev-api
+      "de.kaiserpfalzedv.office.library.client.AssetClient": *dev-api
+      "de.kaiserpfalzedv.office.library.client.BorrowClient": *dev-api
+      "de.kaiserpfalzedv.office.library.client.LocationClient": *dev-api
+      "de.kaiserpfalzedv.office.library.client.UserClient": *test-api
 
 "%test":
   quarkus:
     rest-client:
-      mission-api: *test-api
-      mission-report-api: *test-api
-      special-mission-api: *test-api
-      operative-api: *test-api
-      operative-report-api: *test-api
-      operative-special-report-api: *test-api
+      "de.kaiserpfalzedv.office.library.client.AssetClient": *test-api
+      "de.kaiserpfalzedv.office.library.client.BorrowClient": *test-api
+      "de.kaiserpfalzedv.office.library.client.LocationClient": *test-api
+      "de.kaiserpfalzedv.office.library.client.UserClient": *test-api

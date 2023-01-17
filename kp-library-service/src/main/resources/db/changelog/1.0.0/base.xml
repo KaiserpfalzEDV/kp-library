@@ -1,0 +1,346 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="20230118-rlichti-001" author="rlichti">
+        <sql dbms="h2, mysql, mariadb, postgresql" endDelimiter=";">
+            CREATE SCHEMA IF NOT EXISTS LIBRARY;
+        </sql>
+        <comment>Create SCHEMA for library data.</comment>
+    </changeSet>
+    <changeSet id="20230118-rlichti-002" author="rlichti">
+        <sql dbms="h2, mysql, mariadb, postgresql" endDelimiter=";">
+            CREATE SCHEMA IF NOT EXISTS IAM;
+        </sql>
+        <comment>Create SCHEMA for library data.</comment>
+    </changeSet>
+
+    <changeSet id="20230118-rlichti-003" author="rlichti">
+        <createTable tableName="MEDIUMS" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="MEDIUMS_ID_UK"
+                             primaryKey="true" primaryKeyName="MEDIUMS_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DTYPE" type="VARCHAR(31)" defaultValue="MEDIUM">
+                <constraints nullable="false" notNullConstraintName="MEDIUMS_DTYPE_NN"/>
+            </column>
+
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED" type="TIMESTAMP"/>
+            <column name="REVISIONED" type="TIMESTAMP"/>
+
+            <column name="NAMESPACE" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="MEDIUMS_NAMESPACE_NN"/>
+            </column>
+            <column name="NAME" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="MEDIUMS_NAME_NN"/>
+            </column>
+
+            <column name="EAN" type="VARCHAR(16)">
+                <constraints nullable="false" notNullConstraintName="MEDIUMS_EAN_NN"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="ASSETS" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="ASSETS_ID_UK"
+                             primaryKey="true" primaryKeyName="ASSETS_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false" notNullConstraintName="ASSETS_VERSION_NN"/>
+            </column>
+
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false" notNullConstraintName="ASSETS_CREATED_NN"/>
+            </column>
+            <column name="MODIFIED" type="TIMESTAMP"/>
+            <column name="REVISIONED" type="TIMESTAMP"/>
+
+            <column name="MEDIUM_ID" type="VARCHAR(36)">
+                <constraints nullable="false" notNullConstraintName="ASSETS_MEDIUM_NN"/>
+            </column>
+
+            <column name="COUNTER" type="INT">
+                <constraints nullable="false" notNullConstraintName="ASSETS_COUNTER_NN"/>
+            </column>
+
+            <column name="ACQUIREMENT_DATE" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="ASSETS_ACQUIREMENT_NN"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="BORROWS" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="BORROWS_ID_UK"
+                             primaryKey="true" primaryKeyName="BORROWS_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false" notNullConstraintName="BORROWS_VERSION_NN"/>
+            </column>
+
+            <column name="USER_ID" type="VARCHAR(36)">
+                <constraints nullable="false" notNullConstraintName="BORROWS_USER_NN"/>
+            </column>
+
+            <column name="ASSET_ID" type="VARCHAR(36)">
+                <constraints nullable="false" notNullConstraintName="BORROWS_ASSET_NN"/>
+            </column>
+
+            <column name="BORROW_DATE" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="BORROWS_DATE_NN"/>
+            </column>
+            <column name="LATEST_RETURN" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="BORROWS_LATEST_RETURN_NN"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="BORROWHISTORY" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="BORROWHISTORY_ID_UK"
+                             primaryKey="true" primaryKeyName="BORROWHISTORY_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false" notNullConstraintName="BORROWHISTORY_VERSION_NN"/>
+            </column>
+
+            <column name="USER_ID" type="VARCHAR(36)">
+                <constraints nullable="false" notNullConstraintName="BORROWHISTORY_USER_NN"/>
+            </column>
+            <column name="ASSET_ID" type="VARCHAR(36)">
+                <constraints nullable="false" notNullConstraintName="BORROWHISTORY_ASSET_NN"/>
+            </column>
+
+            <column name="BORROW_TIME" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="BORROWHISTORY_BORROW_NN"/>
+            </column>
+            <column name="RETURN_TIME" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="BORROWHISTORY_RETURN_NN"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="LOCATIONS" schemaName="LIBRARY">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="LOCATIONS_ID_UK"
+                             primaryKey="true" primaryKeyName="LOCATIONS_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED" type="TIMESTAMP"/>
+            <column name="REVISIONED" type="TIMESTAMP"/>
+
+            <column name="NAMESPACE" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="LOCATIONS_NAMESPACE_NN"/>
+            </column>
+            <column name="NAME" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="LOCATIONS_NAME_NN"/>
+            </column>
+
+            <column name="PART_OF" type="VARCHAR(36)"/>
+        </createTable>
+
+
+        <createTable tableName="USERS" schemaName="IAM">
+            <column name="ID" type="VARCHAR(36)">
+                <constraints nullable="false"
+                             unique="true" uniqueConstraintName="USERS_ID_UK"
+                             primaryKey="true" primaryKeyName="USERS_PK"
+                />
+            </column>
+            <column name="VERSION" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="CREATED" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED" type="TIMESTAMP"/>
+            <column name="REVISIONED" type="TIMESTAMP"/>
+
+            <column name="NAMESPACE" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="USERS_NAMESPACE_NN"/>
+            </column>
+            <column name="NAME" type="VARCHAR(100)">
+                <constraints nullable="false" notNullConstraintName="USERS_NAME_NN"/>
+            </column>
+
+            <column name="EMAIL_LOCAL_PART" type="VARCHAR(64)">
+                <constraints nullable="false" notNullConstraintName="USERS_EMAIL_LOCALPART_NN"/>
+            </column>
+            <column name="EMAIL_DOMAIN" type="VARCHAR(1000)">
+                <constraints nullable="false" notNullConstraintName="USERS_EMAIL_DOMAIN_NN"/>
+            </column>
+        </createTable>
+
+
+        <addUniqueConstraint constraintName="ASSETS_MEDIUM_UK"
+                             schemaName="LIBRARY" tableName="ASSETS" columnNames="MEDIUM_ID,COUNTER"/>
+
+        <addUniqueConstraint constraintName="BORROWS_UK"
+                             schemaName="LIBRARY" tableName="BORROWS" columnNames="ASSET_ID,USER_ID"/>
+
+        <addUniqueConstraint constraintName="MEDIUMS_NAME_UK"
+                             schemaName="LIBRARY" tableName="MEDIUMS" columnNames="NAMESPACE,NAME"/>
+
+        <addUniqueConstraint constraintName="MEDIUMS_EAN_UK"
+                             schemaName="LIBRARY" tableName="MEDIUMS" columnNames="EAN"/>
+
+        <addUniqueConstraint constraintName="LOCATIONS_NAME_UK"
+                             schemaName="LIBRARY" tableName="LOCATIONS" columnNames="NAMESPACE,NAME"/>
+
+        <addUniqueConstraint constraintName="USERS_NAME_UK"
+                             schemaName="IAM" tableName="USERS" columnNames="NAMESPACE,NAME"/>
+
+        <addUniqueConstraint constraintName="USERS_EMAIL_UK"
+                             schemaName="IAM" tableName="USERS" columnNames="EMAIL_LOCAL_PART,EMAIL_DOMAIN"/>
+
+
+        <createIndex schemaName="LIBRARY" tableName="ASSETS" indexName="ASSETS_LOCATION_IDX">
+            <column name="LOCATION_ID"/>
+        </createIndex>
+
+        <createIndex schemaName="LIBRARY" tableName="ASSETS" indexName="ASSETS_ACQUIREMENT_IDX">
+            <column name="ACQUIREMENT_DATE"/>
+        </createIndex>
+
+        <createIndex schemaName="LIBRARY" tableName="BORROWS" indexName="BORROWS_BORROW_IDX">
+            <column name="BORROW_TIME"/>
+        </createIndex>
+
+        <createIndex schemaName="LIBRARY" tableName="BORROWS" indexName="BORROWS_RETURN_IDX">
+            <column name="LATEST_RETURN"/>
+        </createIndex>
+
+        <createIndex schemaName="LIBRARY" tableName="LOCATIONS" indexName="LOCATIONS_PART_OF_IDX">
+            <column name="PART_OF"/>
+        </createIndex>
+
+
+        <addForeignKeyConstraint
+                constraintName="ASSETS_MEDIUMS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="ASSETS" baseColumnNames="MEDIUM_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="MEDIUMS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="ASSETS_LOCATIONS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="ASSETS" baseColumnNames="LOCATION_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="LOCATIONS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="BORROWS_USERS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="BORROWS" baseColumnNames="USER_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="USERS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="BORROWS_ASSETS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="BORROWS" baseColumnNames="ASSET_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="ASSETS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="BORROWHISTORY_USERS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="BORROWHISTORY" baseColumnNames="USER_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="USERS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="BORROWHISTORY_ASSETS_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="BORROWHISTORY" baseColumnNames="ASSET_ID"
+                referencedTableSchemaName="LIBRARY" referencedTableName="ASSETS" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint
+                constraintName="LOCATIONS_PARTOF_FK"
+                baseTableSchemaName="LIBRARY" baseTableName="LOCATIONS" baseColumnNames="PART_OF"
+                referencedTableSchemaName="LIBRARY" referencedTableName="LOCATIONS" referencedColumnNames="ID"/>
+
+        <rollback>
+            <dropUniqueConstraint constraintName="USERS_ID_UK" schemaName="IAM" tableName="USERS"/>
+            <dropUniqueConstraint constraintName="MEDIUMS_ID_UK" schemaName="LIBRARY" tableName="MEDIUMS"/>
+            <dropUniqueConstraint constraintName="ASSETS_ID_UK" schemaName="LIBRARY" tableName="ASSETS"/>
+            <dropUniqueConstraint constraintName="BORROWS_ID_UK" schemaName="LIBRARY" tableName="BORROWS"/>
+            <dropUniqueConstraint constraintName="BORROWHISTORY_ID_UK" schemaName="LIBRARY" tableName="BORROWHISTORY"/>
+            <dropUniqueConstraint constraintName="LOCATIONS_ID_UK" schemaName="LIBRARY" tableName="LOCATIONS"/>
+
+            <dropUniqueConstraint constraintName="USERS_NAME_UK" schemaName="IAM" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="USERS_EMAIL_UK" schemaName="IAM" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="MEDIUMS_NAME_UK" schemaName="LIBRARY" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="MEDIUMS_EAN_UK" schemaName="LIBRARY" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="ASSETS_MEDIUM_UK" schemaName="LIBRARY" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="BOROWS_UK" schemaName="LIBRARY" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="LOCATIONS_NAME_UK" schemaName="LIBRARY" tableName="LIBRARY"/>
+
+            <dropIndex indexName="ASSETS_LOCATION_IDX" schemaName="LIBRARY" tableName="LOCATION_ID"/>
+            <dropIndex indexName="ASSETS_ACQUIREMENT_IDX" schemaName="LIBRARY" tableName="ACQUIREMENT_DATE"/>
+            <dropIndex indexName="BORROWS_BORROW_IDX" schemaName="LIBRARY" tableName="BORROW_TIME"/>
+            <dropIndex indexName="BORROWS_RETURN_IDX" schemaName="LIBRARY" tableName="LATEST_RETURN"/>
+            <dropIndex indexName="LOCATIONS_PART_OF_IDX" schemaName="LIBRARY" tableName="PART_OF"/>
+
+            <dropAllForeignKeyConstraints baseTableSchemaName="IAM" baseTableName="USERS"/>
+            <dropAllForeignKeyConstraints baseTableSchemaName="LIBRARY" baseTableName="MEDIUMS"/>
+            <dropAllForeignKeyConstraints baseTableSchemaName="LIBRARY" baseTableName="ASSETS"/>
+            <dropAllForeignKeyConstraints baseTableSchemaName="LIBRARY" baseTableName="BORROWS"/>
+            <dropAllForeignKeyConstraints baseTableSchemaName="LIBRARY" baseTableName="BORROWHISTORY"/>
+            <dropAllForeignKeyConstraints baseTableSchemaName="LIBRARY" baseTableName="LOCATIONS"/>
+
+            <dropTable schemaName="IAM" tableName="USERS"/>
+            <dropTable schemaName="LIBRARY" tableName="MEDIUMS"/>
+            <dropTable schemaName="LIBRARY" tableName="ASSETS"/>
+            <dropTable schemaName="LIBRARY" tableName="BORROWS"/>
+            <dropTable schemaName="LIBRARY" tableName="BORROWHISTORY"/>
+            <dropTable schemaName="LIBRARY" tableName="LOCATION"/>
+
+            <sql>
+                DROP SCHEMA IF NOT EXISTS IAM;
+                DROP SCHEMA IF NOT EXISTS USERS;
+            </sql>
+        </rollback>
+
+        <comment>Base installation for v1.</comment>
+    </changeSet>
+
+    <changeSet id="20230118-rlichti-004" author="rlichti">
+        <loadUpdateData primaryKey="LOCTATIONS_PK" schemaName="LIBRARY" tableName="LOCATIONS"
+                        file="locations.csv" relativeToChangelogFile="true" separator=";"/>
+        <comment>Base Data</comment>
+    </changeSet>
+
+    <changeSet id="tag-v1.0.0" author="rlichti">
+        <tagDatabase tag="v1.0.0"/>
+    </changeSet>
+</databaseChangeLog>

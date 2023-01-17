@@ -30,7 +30,9 @@ import de.kaiserpfalzedv.office.library.api.HasRecord;
  * @since 1.0.0  2023-01-15
  */
 public interface User extends HasId, HasRecord, HasDisplayName, HasNameSpace {
-    String getIdpUser();
+    default String getIdpUser() {
+        return getName();
+    }
 
     Email getEmail();
 }

@@ -15,24 +15,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.client;
+package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import lombok.extern.slf4j.Slf4j;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import javax.persistence.*;
 
 /**
- * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>
+ * <p>Medium -- JPA implementation for {@link de.kaiserpfalzedv.office.library.model.Medium}.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Entity
+@Table(
+        name = "MEDIUMS",
+        schema = About.DB_SCHEMA,
+        uniqueConstraints = {
+                @UniqueConstraint(name = "MEDIUMS_NAME_UK", columnNames = {"NAMESPACE","NAME"}),
+                @UniqueConstraint(name = "MEDIUMS_EAN_UK", columnNames = {"EAN"})
+        }
+)
+@DiscriminatorColumn
 @Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
@@ -41,13 +49,15 @@ import lombok.extern.slf4j.Slf4j;
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-@Slf4j
-public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
-    @ToString.Include
-    /** The namespace of this resource. */
-    private String nameSpace;
-
-    @ToString.Include
-    /** The name of this resource. */
-    private String name;
+public abstract class Medium extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.Medium {
+    @Schema(
+            title = "EAN -- International Article Number",
+            description = "The EAN13 number of the medium.",
+            example = "978-5-12345-678-9",
+            minLength = 13,
+            maxLength = 16,
+            required = true
+    )
+    @Column(name = "EAN", length = 16, nullable = false, unique = true)
+    private String ean;
 }

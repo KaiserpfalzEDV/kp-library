@@ -20,6 +20,7 @@ package de.kaiserpfalzedv.office.library.model.client;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -30,6 +31,7 @@ import java.util.UUID;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor

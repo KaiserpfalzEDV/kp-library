@@ -27,5 +27,7 @@
         <module>kp-library-api</module>
         <module>kp-library-client</module>
         <module>kp-library-service</module>
+
+        <module>kp-library-librarian-ui</module>
     </modules>
 </project>

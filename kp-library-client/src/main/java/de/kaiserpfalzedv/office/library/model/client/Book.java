@@ -20,6 +20,7 @@ package de.kaiserpfalzedv.office.library.model.client;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -30,6 +31,7 @@ import javax.validation.constraints.Size;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,7 +40,6 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class Book extends Medium implements de.kaiserpfalzedv.office.library.model.Book {
-    private String isbn13;
 
     @Override
     @Size(min = 3, max = 100, message = "The length of the string must be between 3 and 100 characters long.")

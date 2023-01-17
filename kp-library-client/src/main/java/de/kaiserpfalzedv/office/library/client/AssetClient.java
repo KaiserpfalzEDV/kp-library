@@ -17,10 +17,16 @@
 
 package de.kaiserpfalzedv.office.library.client;
 
+import de.kaiserpfalzedv.office.library.mapper.LibraryClientException;
+import de.kaiserpfalzedv.office.library.mapper.ResponseErrorMapper;
 import de.kaiserpfalzedv.office.library.model.client.Asset;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import io.quarkus.cache.CacheInvalidate;
 import io.quarkus.cache.CacheResult;
 import io.quarkus.oidc.token.propagation.reactive.AccessTokenRequestReactiveFilter;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -35,8 +41,9 @@ import java.util.UUID;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-@RegisterRestClient(configKey = "asset-api")
+@RegisterRestClient
 @RegisterProvider(value = AccessTokenRequestReactiveFilter.class, priority = 5000)
+@RegisterProvider(value = ResponseErrorMapper.class, priority = 10)
 @Path("/api/assets")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -44,10 +51,32 @@ public interface AssetClient {
     String CACHE_NAME = "library-assets";
     long CACHE_LOCK_TIMEOUT = 10L;
 
+    @Timed("library.asset.create.time")
+    @Counted("library.asset.create.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @POST
     @CacheResult(cacheName = CACHE_NAME, lockTimeout = CACHE_LOCK_TIMEOUT)
     Asset create(final Asset data);
 
+    @Timed("library.asset.list-page.time")
+    @Counted("library.asset.list-page.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @GET
     @CacheResult(cacheName = CACHE_NAME, lockTimeout = CACHE_LOCK_TIMEOUT)
     List<Asset> index(
@@ -55,15 +84,48 @@ public interface AssetClient {
         @QueryParam("size") long size
     );
 
+    @Timed("library.asset.list.time")
+    @Counted("library.asset.list.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @GET
     @CacheResult(cacheName = CACHE_NAME, lockTimeout = CACHE_LOCK_TIMEOUT)
     List<Asset> index();
 
+    @Timed("library.asset.retrieve-by-id.time")
+    @Counted("library.asset.retrieve-by-id.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @GET
     @Path("/{id}")
     @CacheResult(cacheName = CACHE_NAME, lockTimeout = CACHE_LOCK_TIMEOUT)
     Asset retrieve(@PathParam("id") final UUID id);
 
+    @Timed("library.asset.retrieve-by-name.time")
+    @Counted("library.asset.retrieve-by-name.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @GET
     @Path("/{namespace}/{name}")
     @CacheResult(cacheName = CACHE_NAME, lockTimeout = CACHE_LOCK_TIMEOUT)
@@ -72,11 +134,33 @@ public interface AssetClient {
             @PathParam("name") final String name
     );
 
+    @Timed("library.asset.update.time")
+    @Counted("library.asset.update.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @PUT
     @Path("/{id}")
     @CacheInvalidate(cacheName = CACHE_NAME)
     void update(@PathParam("id") final UUID id, final Asset asset);
 
+    @Timed("library.asset.delete.time")
+    @Counted("library.asset.delete.count")
+    @Retry(
+            delay = 2000,
+            maxDuration = 6000,
+            retryOn = {LibraryClientException.class}
+    )
+    @CircuitBreaker(
+            failOn = LibraryClientException.class,
+            requestVolumeThreshold = 5
+    )
     @PUT
     @Path("/{id}")
     @CacheInvalidate(cacheName = CACHE_NAME)

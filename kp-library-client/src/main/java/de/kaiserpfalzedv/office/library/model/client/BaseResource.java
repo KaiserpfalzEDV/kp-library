@@ -22,6 +22,7 @@ import de.kaiserpfalzedv.commons.core.resources.HasId;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.OffsetDateTime;
@@ -33,6 +34,7 @@ import java.util.UUID;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
+@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,7 +52,7 @@ public abstract class BaseResource implements HasId, HasRecord {
     @ToString.Include
     @EqualsAndHashCode.Include
     /** The version of this data set. */
-    private Long version;
+    private Integer version;
 
     /** The creation date of this resource. */
     private OffsetDateTime created;
