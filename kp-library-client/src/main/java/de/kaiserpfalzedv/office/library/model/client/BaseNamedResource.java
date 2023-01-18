@@ -17,15 +17,12 @@
 
 package de.kaiserpfalzedv.office.library.model.client;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import de.kaiserpfalzedv.commons.core.resources.HasId;
 import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>
@@ -33,15 +30,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
-@Slf4j
 public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
     @ToString.Include
     /** The namespace of this resource. */

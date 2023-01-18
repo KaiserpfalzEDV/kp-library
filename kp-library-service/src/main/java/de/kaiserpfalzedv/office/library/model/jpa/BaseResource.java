@@ -17,7 +17,6 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import de.kaiserpfalzedv.commons.jpa.AbstractRevisionedJPAEntity;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.AllArgsConstructor;
@@ -25,8 +24,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.MappedSuperclass;
 
@@ -36,13 +33,10 @@ import javax.persistence.MappedSuperclass;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-@Jacksonized
 @MappedSuperclass
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @Getter
-@ToString(onlyExplicitlyIncluded = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
-@Slf4j
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 public abstract class BaseResource extends AbstractRevisionedJPAEntity implements HasRecord {}

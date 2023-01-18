@@ -17,10 +17,8 @@
 
 package de.kaiserpfalzedv.office.library.model.client;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
 
 /**
  * <p>Medium -- Client implementation for {@link de.kaiserpfalzedv.office.library.model.Medium}.</p>
@@ -28,14 +26,13 @@ import lombok.extern.jackson.Jacksonized;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public abstract class Medium extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.Medium {
+    @ToString.Include
     private String ean;
 }

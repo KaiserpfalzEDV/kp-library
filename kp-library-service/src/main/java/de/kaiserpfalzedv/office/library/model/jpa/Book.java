@@ -42,7 +42,6 @@ import javax.validation.constraints.Size;
 @Entity
 @DiscriminatorValue("BOOK")
 @SuperBuilder(toBuilder = true)
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)

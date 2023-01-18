@@ -21,4 +21,4 @@
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-package de.kaiserpfalzedv.office.library;
+package de.kaiserpfalzedv.office.library.ui;

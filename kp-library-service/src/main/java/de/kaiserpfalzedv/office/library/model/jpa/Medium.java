@@ -17,10 +17,8 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.*;
@@ -41,14 +39,12 @@ import javax.persistence.*;
         }
 )
 @DiscriminatorColumn
-@Jacksonized
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public abstract class Medium extends BaseNamedResource implements de.kaiserpfalzedv.office.library.model.Medium {
     @Schema(
             title = "EAN -- International Article Number",
@@ -59,5 +55,6 @@ public abstract class Medium extends BaseNamedResource implements de.kaiserpfalz
             required = true
     )
     @Column(name = "EAN", length = 16, nullable = false, unique = true)
+    @ToString.Include
     private String ean;
 }
