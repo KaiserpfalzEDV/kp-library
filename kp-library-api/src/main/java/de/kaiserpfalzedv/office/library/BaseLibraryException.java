@@ -15,30 +15,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.mapper;
+package de.kaiserpfalzedv.office.library;
 
-import de.kaiserpfalzedv.office.library.BaseLibrarySystemException;
-import lombok.Getter;
+import de.kaiserpfalzedv.commons.core.api.BaseException;
 
 /**
- * <p>LibraryClientException -- The base runtime exception for the whole library client</p>
+ * BaseLibraryException --
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
- * @since 1.0.0  2023-01-17
+ * @since 1.0.0  2023-01-18
  */
-public abstract class LibraryClientException extends BaseLibrarySystemException {
-    @Getter
-    private final int code;
+public class BaseLibraryException extends BaseException {
 
-    public LibraryClientException(final int code, final String message) {
+    public BaseLibraryException(String message) {
         super(message);
-
-        this.code = code;
     }
 
-    public LibraryClientException(final int code, final String message, Throwable cause) {
+    public BaseLibraryException(String message, Throwable cause) {
         super(message, cause);
+    }
 
-        this.code = code;
+    public BaseLibraryException(Throwable cause) {
+        super(cause);
+    }
+
+    public BaseLibraryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 }
