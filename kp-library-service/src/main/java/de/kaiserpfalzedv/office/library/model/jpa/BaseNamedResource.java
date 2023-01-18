@@ -17,7 +17,6 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import de.kaiserpfalzedv.commons.core.resources.HasId;
 import de.kaiserpfalzedv.commons.core.resources.HasName;
 import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
@@ -25,8 +24,6 @@ import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.Column;
@@ -41,7 +38,6 @@ import javax.validation.constraints.Size;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-@Jacksonized
 @MappedSuperclass
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
@@ -49,8 +45,6 @@ import javax.validation.constraints.Size;
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
-@Slf4j
 public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
     @Schema(
             title = "NameSpace",

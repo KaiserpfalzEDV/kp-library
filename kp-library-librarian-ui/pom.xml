@@ -87,7 +87,7 @@
         <dependency>
             <groupId>de.jfancy</groupId>
             <artifactId>star-rating</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.maxime</groupId>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-cookie-consent-flow</artifactId>
-            <version>1.2.1</version>
+            <version>23.3.4</version>
         </dependency>
         <dependency>
             <groupId>org.vaadin.stefan</groupId>

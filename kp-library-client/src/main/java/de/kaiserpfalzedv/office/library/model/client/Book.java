@@ -18,12 +18,12 @@
 package de.kaiserpfalzedv.office.library.model.client;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * <p>Book -- The client implementation for {@link de.kaiserpfalzedv.office.library.model.Book}.</p>
@@ -33,17 +33,13 @@ import javax.validation.constraints.Size;
  */
 @Jacksonized
 @SuperBuilder(toBuilder = true)
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class Book extends Medium implements de.kaiserpfalzedv.office.library.model.Book {
-
     @Override
-    @Size(min = 3, max = 100, message = "The length of the string must be between 3 and 100 characters long.")
-    @Pattern(regexp = "^[a-zA-Z][-a-zA-Z0-9]{1,61}(.[a-zA-Z][-a-zA-Z0-9]{1,61}){0,4}$", message = "The string must match the pattern '^[a-zA-Z][-a-zA-Z0-9]{1,61}(.[a-zA-Z][-a-zA-Z0-9]{1,61}){0,4}$'")
     public String getKind() {
         return de.kaiserpfalzedv.office.library.model.Book.KIND;
     }
