@@ -1,9 +1,10 @@
 ---
 quarkus:
   application:
-    name: library-user-ui
-    version: 2.0.0
+    name: librarian
+    version: 1.0.0
     ui-header: ${quarkus.application.name}/${quarkus.application.version}
+    api-version: "v1"
   default-locale: "de"
 
   log:
@@ -18,6 +19,8 @@ quarkus:
     level: WARN
     min-level: ALL
     category:
+      "de.paladinsinn":
+        level: INFO
       "de.kaiserpfalzedv":
         level: INFO
       http-problem:
@@ -79,8 +82,7 @@ quarkus:
       permission:
         metrics:
           paths: /q/*
-#          policy: metrics
-          policy: permit
+          policy: metrics
         sw-js:
           paths: /sw.js
           policy: permit
@@ -91,6 +93,10 @@ quarkus:
       form:
         enabled: false
     cors: true
+
+  keycloak:
+    policy-enforcer:
+      enable: true
 
   oidc:
     enabled: true
@@ -162,6 +168,9 @@ quarkus:
         path: /q/metrics
         default-registry: true
 
+
+  devservices:
+    enabled: false
   banner:
     enabled: true
 
@@ -230,14 +239,13 @@ imprint:
     E-Mail: email address
   addition: ""
 
-
 vaadin:
   launch-browser: true
   whitelisted-packages:
     - com.vaadin
     - org.vaadin
     - dev.hilla
-    - de.kaiserpfalz-edv.office.library
+    - de.paladinsinn.tp.dcis.ui
     - com.github.appreciated.apexcharts
     - com.wontlost
 
