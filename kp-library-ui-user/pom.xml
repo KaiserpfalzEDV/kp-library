@@ -19,17 +19,13 @@
         <relativePath>../kp-library-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>kp-library-librarian-ui</artifactId>
-    <name>KP Library :: UI :: Librarian</name>
+    <artifactId>kp-library-ui-user</artifactId>
+    <name>KP Library :: UI :: User</name>
 
     <dependencies>
         <dependency>
             <groupId>de.kaiserpfalz-edv.office.library</groupId>
             <artifactId>kp-library-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons</groupId>
-            <artifactId>kp-commons-ean-search</artifactId>
         </dependency>
 
         <dependency>

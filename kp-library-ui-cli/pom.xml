@@ -21,29 +21,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>kp-fileserver-parent</artifactId>
-        <groupId>de.kaiserpfalz-edv.fileserver</groupId>
-        <version>3.0.0</version>
-        <relativePath>../kp-fileserver-parent/pom.xml</relativePath>
+        <artifactId>kp-library-parent</artifactId>
+        <groupId>de.kaiserpfalz-edv.office.library</groupId>
+        <version>1.0.0</version>
+        <relativePath>../kp-library-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>kp-fileserver-client</artifactId>
-    <name>KP Fileserver :: Client</name>
-    <description>Client for the file handling server.</description>
+    <artifactId>kp-library-ui-cli</artifactId>
+    <name>KP Library :: UI :: CLI</name>
+    <description>CLI for the library.</description>
 
     <dependencies>
         <dependency>
-            <groupId>de.kaiserpfalz-edv.fileserver</groupId>
-            <artifactId>kp-fileserver-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons</groupId>
-            <artifactId>kp-commons-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons</groupId>
-            <artifactId>kp-commons-rest</artifactId>
+            <groupId>de.kaiserpfalz-edv.office.library</groupId>
+            <artifactId>kp-library-client</artifactId>
         </dependency>
 
         <dependency>
@@ -76,10 +67,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-fault-tolerance</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -94,15 +81,6 @@
 
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tietoevry.quarkus</groupId>
-            <artifactId>quarkus-resteasy-problem</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-test-security</artifactId>
             <scope>test</scope>
         </dependency>
@@ -110,11 +88,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
