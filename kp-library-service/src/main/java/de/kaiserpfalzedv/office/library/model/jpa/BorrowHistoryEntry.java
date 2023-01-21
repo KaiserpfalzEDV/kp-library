@@ -18,7 +18,7 @@
 package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.core.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;

@@ -24,7 +24,6 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -50,7 +49,6 @@ public class Asset extends BaseResource implements de.kaiserpfalzedv.office.libr
     private Location location;
     private ZonedDateTime acquirementDate;
 
-    @Nullable
     private UUID currentBorrow;
 
 

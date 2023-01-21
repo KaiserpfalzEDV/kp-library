@@ -18,13 +18,18 @@
 package de.kaiserpfalzedv.office.library.model.jpa;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.core.resources.HasName;
-import lombok.*;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 

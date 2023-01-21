@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library.api;
 
-import de.kaiserpfalzedv.commons.core.resources.HasName;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
 
 /**
  * HasDisplayName -- Human readable names.

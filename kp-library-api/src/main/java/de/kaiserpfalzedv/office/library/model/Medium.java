@@ -17,10 +17,10 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasKind;
-import de.kaiserpfalzedv.commons.core.resources.HasName;
-import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasKind;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
+import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 
 /**
