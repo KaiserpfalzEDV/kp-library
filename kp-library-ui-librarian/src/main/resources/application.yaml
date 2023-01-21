@@ -33,9 +33,6 @@ quarkus:
     ui:
       enable: true
 
-  hibernate-orm:
-    enabled: false
-
 
   http:
     insecure-requests: REDIRECT
@@ -83,8 +80,8 @@ quarkus:
         metrics:
           paths: /q/*
           policy: metrics
-        sw-js:
-          paths: /sw.js
+        vaadin:
+          paths: /sw.js,/VAADIN/,/manifest.webmanifest,/public
           policy: permit
         protected:
           paths: /*
@@ -93,10 +90,6 @@ quarkus:
       form:
         enabled: false
     cors: true
-
-  keycloak:
-    policy-enforcer:
-      enable: true
 
   oidc:
     enabled: true
@@ -133,11 +126,11 @@ quarkus:
     client-id: ${OIDC_CLIENT}
     credentials:
       secret: ${OIDC_SECRET}
-  oidc-token-propagation:
+  oidc-token-propagation-reactive:
     enabled: true
     register-filter: false
     exchange-token: false
-  oidc-client-filter:
+  oidc-client-reactive-filter:
     register-filter: false
 
 

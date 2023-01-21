@@ -44,6 +44,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Vaadin Platform BOM -->
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>23.3.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
