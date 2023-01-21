@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library.model.client;
 
-import de.kaiserpfalzedv.commons.core.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

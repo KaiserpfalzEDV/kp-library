@@ -17,7 +17,8 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.core.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.office.library.api.HasAcquirementDate;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasLocation;
@@ -33,7 +34,7 @@ import java.util.UUID;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDisplayName {
+public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasName, HasDisplayName {
     @NotNull
     Medium getMedium();
 

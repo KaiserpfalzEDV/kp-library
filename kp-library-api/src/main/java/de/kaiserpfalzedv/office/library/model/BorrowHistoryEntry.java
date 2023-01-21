@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.core.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;

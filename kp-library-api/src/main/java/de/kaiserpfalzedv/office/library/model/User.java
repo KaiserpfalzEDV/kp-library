@@ -17,8 +17,9 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.core.resources.HasId;
-import de.kaiserpfalzedv.commons.core.resources.HasNameSpace;
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
+import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.Email;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
@@ -29,7 +30,7 @@ import de.kaiserpfalzedv.office.library.api.HasRecord;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface User extends HasId, HasRecord, HasDisplayName, HasNameSpace {
+public interface User extends HasId, HasRecord, HasDisplayName, HasName, HasNameSpace {
     default String getIdpUser() {
         return getName();
     }

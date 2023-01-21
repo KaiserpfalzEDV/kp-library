@@ -29,6 +29,10 @@
         </dependency>
         <dependency>
             <groupId>de.kaiserpfalz-edv.commons</groupId>
+            <artifactId>kp-commons-vaadin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.kaiserpfalz-edv.commons</groupId>
             <artifactId>kp-commons-ean-search</artifactId>
         </dependency>
 
@@ -40,84 +44,171 @@
         <!-- vaadin components -->
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>flow-push</artifactId>
-            <version>23.3.2</version>
+            <artifactId>vaadin-core</artifactId>
+            <version>23.3.4</version>
         </dependency>
 
         <dependency>
             <groupId>com.wontlost</groupId>
             <artifactId>ckeditor-vaadin</artifactId>
             <version>3.2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.appreciated</groupId>
             <artifactId>card</artifactId>
             <version>2.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.claspina</groupId>
             <artifactId>confirm-dialog</artifactId>
             <version>2.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.pjp</groupId>
             <artifactId>QuestionnaireVaadin</artifactId>
             <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.vaadin.componentfactory</groupId>
             <artifactId>idle-notification</artifactId>
             <version>2.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.mycompany</groupId>
             <artifactId>badge</artifactId>
             <version>2.2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.klaudeta</groupId>
             <artifactId>grid-pagination</artifactId>
             <version>3.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.mlottmann.VStepper</groupId>
             <artifactId>VStepper</artifactId>
             <version>1.0.9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>de.jfancy</groupId>
             <artifactId>star-rating</artifactId>
             <version>1.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.maxime</groupId>
             <artifactId>markdown-area</artifactId>
             <version>2.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-cookie-consent-flow</artifactId>
             <version>23.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.vaadin.stefan</groupId>
-            <artifactId>fullcalendar2</artifactId>
-            <version>4.1.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.stefan</groupId>
             <artifactId>fullcalendar2-scheduler</artifactId>
             <version>4.1.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.stefan</groupId>
             <artifactId>clipboard</artifactId>
             <version>1.0.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.taefi</groupId>
             <artifactId>toggle-button-group</artifactId>
             <version>1.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

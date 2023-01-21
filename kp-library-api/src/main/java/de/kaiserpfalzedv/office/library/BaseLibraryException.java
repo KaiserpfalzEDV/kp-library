@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library;
 
-import de.kaiserpfalzedv.commons.core.api.BaseException;
+import de.kaiserpfalzedv.commons.api.BaseException;
 
 /**
  * BaseLibraryException --
