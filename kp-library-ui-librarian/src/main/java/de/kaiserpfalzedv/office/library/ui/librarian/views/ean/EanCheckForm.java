@@ -24,14 +24,15 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.quarkus.annotation.UIScoped;
-import de.kaiserpfalzedv.commons.external.eansearch.model.EanData;
+import de.kaiserpfalzedv.commons.external.dnb.model.Book;
 import de.kaiserpfalzedv.commons.vaadin.mvp.nodata.BasicForm;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>EanCheckForm -- .</p>
@@ -72,15 +73,16 @@ public class EanCheckForm extends BasicForm {
         ean.clear();
     }
 
-    void addEan(@NotNull final Collection<EanData> data) {
+    void addEan(@NotNull final List<Book> data) {
         cards.setVisible(true);
 
-        for(EanData d : data) {
+        for(Book d : data) {
             Card card = new Card();
             card.setAlignItems(FlexComponent.Alignment.START);
             card.add(new H2(d.getEan()));
-            card.add(new Paragraph(d.getName()));
-            card.add(new Paragraph("Category: " + d.getCategoryName() + " (" + d.getCategoryId() + ")"));
+            card.add(new Paragraph(d.getTitle()));
+            card.add(new Paragraph("Publisher: " + d.getPublisher()));
+            card.add(new Paragraph(d.getIsbns().stream().collect(Collectors.joining(" * "))));
 
             cards.add(card);
         }

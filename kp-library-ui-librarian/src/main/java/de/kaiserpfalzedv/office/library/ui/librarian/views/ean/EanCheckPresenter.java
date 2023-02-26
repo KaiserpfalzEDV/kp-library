@@ -2,8 +2,8 @@ package de.kaiserpfalzedv.office.library.ui.librarian.views.ean;
 
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.quarkus.annotation.UIScoped;
-import de.kaiserpfalzedv.commons.external.eansearch.client.EanSearchClient;
-import de.kaiserpfalzedv.commons.external.eansearch.model.EanData;
+import de.kaiserpfalzedv.commons.external.dnb.client.DnbLookupClient;
+import de.kaiserpfalzedv.commons.external.dnb.model.Book;
 import de.kaiserpfalzedv.commons.vaadin.mvp.nodata.BasicPresenterImpl;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 /**
  * <p>EanCheckPresenter -- .</p>
@@ -22,11 +22,11 @@ import java.util.Set;
 @UIScoped
 @Slf4j
 public class EanCheckPresenter extends BasicPresenterImpl {
-    private final EanSearchClient client;
+    private final DnbLookupClient client;
 
     @Inject
     public EanCheckPresenter(
-            @RestClient @NotNull final EanSearchClient client,
+            @RestClient @NotNull final DnbLookupClient client,
             @NotNull final FrontendUser user
     ) {
         super(user);
@@ -39,7 +39,7 @@ public class EanCheckPresenter extends BasicPresenterImpl {
         String ean = form().getEan();
         form().clear();
 
-        Set<EanData> data = client.barcodeLookupEAN(ean);
+        List<Book> data = client.dnbLookup(ean);
 
         form().addEan(data);
         Notification.show("Execute of '" + this.getClass().getSimpleName() + "'.");

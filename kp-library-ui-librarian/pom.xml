@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>de.kaiserpfalz-edv.commons</groupId>
-            <artifactId>kp-commons-ean-search</artifactId>
+            <artifactId>kp-commons-dnb-lookup</artifactId>
         </dependency>
 
         <dependency>

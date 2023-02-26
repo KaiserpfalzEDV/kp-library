@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  * @since 1.0.0  2023-01-21
  */
 @UIScoped
-@AppNavRoute(i18n = "ean-check.view.title", icon = "las la-barcode")
+@AppNavRoute(i18n = "EanCheckView", icon = "las la-barcode")
 @Route(value = "/ean-check", layout = MainLayout.class)
 @RouteAlias(value = "/", layout = MainLayout.class)
 @RolesAllowed({"admin"})

@@ -1,2 +1,5 @@
 ###
 GET {{host}}/api?token={{token}}&op=barcode-lookup&format=json&language=3&ean=4002998017271
+
+###
+GET http://lx2.loc.gov:210/lcdb?version=2.0&operation=searchRetrieve&query=9782351250839&startRecord=1&maximumRecords=10&recordSchema=marcxml

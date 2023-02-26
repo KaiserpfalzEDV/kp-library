@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="kp-library-ui-user" />
+        <module name="kp-library-service" />
+        <module name="kp-library-ui-cli" />
+        <module name="kp-library-client" />
+        <module name="kp-library-ui-librarian" />
+        <module name="kp-library-api" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kp-library-api" options="-parameters" />
+      <module name="kp-library-client" options="-parameters" />
+      <module name="kp-library-parent" options="-parameters" />
+      <module name="kp-library-service" options="-parameters" />
+      <module name="kp-library-ui-cli" options="-parameters" />
+      <module name="kp-library-ui-librarian" options="-parameters" />
+      <module name="kp-library-ui-user" options="-parameters" />
+    </option>
+  </component>
+</project>
