@@ -6,7 +6,6 @@ import de.kaiserpfalzedv.commons.external.dnb.client.DnbLookupClient;
 import de.kaiserpfalzedv.commons.external.dnb.model.Book;
 import de.kaiserpfalzedv.commons.vaadin.mvp.nodata.BasicPresenterImpl;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
@@ -20,8 +19,10 @@ import java.util.List;
  * @since 1.0.0  2023-01-21
  */
 @UIScoped
-@Slf4j
 public class EanCheckPresenter extends BasicPresenterImpl {
+    /**
+     * The lookup for the Deutsche National Bibliothek.
+     */
     private final DnbLookupClient client;
 
     @Inject
@@ -39,7 +40,7 @@ public class EanCheckPresenter extends BasicPresenterImpl {
         String ean = form().getEan();
         form().clear();
 
-        List<Book> data = client.dnbLookup(ean);
+        List<Book> data = client.lookup(ean);
 
         form().addEan(data);
         Notification.show("Execute of '" + this.getClass().getSimpleName() + "'.");

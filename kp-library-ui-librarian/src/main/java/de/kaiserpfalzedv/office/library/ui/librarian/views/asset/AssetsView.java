@@ -5,7 +5,6 @@ import com.vaadin.quarkus.annotation.UIScoped;
 import de.kaiserpfalzedv.commons.vaadin.mvp.data.BasicDataViewImpl;
 import de.kaiserpfalzedv.commons.vaadin.nav.MainLayout;
 import de.kaiserpfalzedv.office.library.model.client.Asset;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
 
@@ -17,7 +16,6 @@ import javax.inject.Inject;
  */
 @UIScoped
 @Route(value = "/asset/:id", layout = MainLayout.class)
-@Slf4j
 public class AssetsView extends BasicDataViewImpl<Asset> {
     @Inject
     public AssetsView(AssetPresenter presenter, AssetDataForm form) {

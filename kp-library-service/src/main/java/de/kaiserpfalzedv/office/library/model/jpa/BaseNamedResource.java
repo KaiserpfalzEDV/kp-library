@@ -17,11 +17,9 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -45,7 +43,7 @@ import javax.validation.constraints.Size;
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
+public abstract class BaseNamedResource extends BaseResource implements HasNameSpace, HasDisplayName {
     @Schema(
             title = "NameSpace",
             description = "The namespace of the resource",

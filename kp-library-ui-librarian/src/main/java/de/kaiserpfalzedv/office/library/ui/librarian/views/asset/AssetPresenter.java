@@ -4,8 +4,6 @@ import com.vaadin.quarkus.annotation.UIScoped;
 import de.kaiserpfalzedv.commons.vaadin.mvp.data.BasicDataPresenterImpl;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
 import de.kaiserpfalzedv.office.library.model.client.Asset;
-import lombok.extern.slf4j.Slf4j;
-
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
@@ -17,7 +15,6 @@ import java.util.UUID;
  * @since 1.0.0  2023-01-21
  */
 @UIScoped
-@Slf4j
 public class AssetPresenter extends BasicDataPresenterImpl<Asset> {
     @Inject
     public AssetPresenter(@NotNull final FrontendUser user) {

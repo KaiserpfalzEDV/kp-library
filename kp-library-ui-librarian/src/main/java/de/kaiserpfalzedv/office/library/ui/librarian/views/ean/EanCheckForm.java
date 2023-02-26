@@ -27,8 +27,6 @@ import com.vaadin.quarkus.annotation.UIScoped;
 import de.kaiserpfalzedv.commons.external.dnb.model.Book;
 import de.kaiserpfalzedv.commons.vaadin.mvp.nodata.BasicForm;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
-import lombok.extern.slf4j.Slf4j;
-
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -41,7 +39,6 @@ import java.util.stream.Collectors;
  * @since 1.0.0  2023-01-21
  */
 @UIScoped
-@Slf4j
 public class EanCheckForm extends BasicForm {
     private VerticalLayout cards;
 

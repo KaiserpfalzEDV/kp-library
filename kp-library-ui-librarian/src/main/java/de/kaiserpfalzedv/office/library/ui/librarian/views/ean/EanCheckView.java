@@ -6,8 +6,6 @@ import com.vaadin.quarkus.annotation.UIScoped;
 import de.kaiserpfalzedv.commons.vaadin.mvp.nodata.BasicViewImpl;
 import de.kaiserpfalzedv.commons.vaadin.nav.AppNavRoute;
 import de.kaiserpfalzedv.commons.vaadin.nav.MainLayout;
-import lombok.extern.slf4j.Slf4j;
-
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -23,7 +21,6 @@ import javax.validation.constraints.NotNull;
 @Route(value = "/ean-check", layout = MainLayout.class)
 @RouteAlias(value = "/", layout = MainLayout.class)
 @RolesAllowed({"admin"})
-@Slf4j
 public class EanCheckView extends BasicViewImpl {
 
     @Inject

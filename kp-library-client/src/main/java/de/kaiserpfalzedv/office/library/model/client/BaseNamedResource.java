@@ -17,10 +17,8 @@
 
 package de.kaiserpfalzedv.office.library.model.client;
 
-import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -36,7 +34,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-public abstract class BaseNamedResource extends BaseResource implements HasId, HasRecord, HasNameSpace, HasDisplayName {
+public abstract class BaseNamedResource extends BaseResource implements HasNameSpace, HasDisplayName {
     @ToString.Include
     /** The namespace of this resource. */
     private String nameSpace;

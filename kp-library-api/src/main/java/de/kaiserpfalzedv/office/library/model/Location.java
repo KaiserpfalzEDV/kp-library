@@ -19,7 +19,6 @@ package de.kaiserpfalzedv.office.library.model;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import de.kaiserpfalzedv.commons.api.resources.HasId;
-import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
@@ -41,7 +40,7 @@ import java.util.Set;
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface Location extends HasId, HasNameSpace, HasName, HasDisplayName, HasRecord {
+public interface Location extends HasId, HasNameSpace, HasDisplayName, HasRecord {
     /**
      * @return The type of the location. Defaults to {@link  Type#VIRTUAL}.
      */

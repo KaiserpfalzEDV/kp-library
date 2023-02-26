@@ -5,8 +5,6 @@ import com.vaadin.quarkus.annotation.UIScoped;
 import de.kaiserpfalzedv.commons.vaadin.mvp.data.BasicDataForm;
 import de.kaiserpfalzedv.commons.vaadin.users.FrontendUser;
 import de.kaiserpfalzedv.office.library.model.client.Asset;
-import lombok.extern.slf4j.Slf4j;
-
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +15,6 @@ import javax.validation.constraints.NotNull;
  * @since 1.0.0  2023-01-21
  */
 @UIScoped
-@Slf4j
 public class AssetDataForm extends BasicDataForm<Asset> {
 
     @Inject
