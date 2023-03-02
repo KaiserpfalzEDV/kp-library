@@ -108,7 +108,7 @@
         <dependency>
             <groupId>org.vaadin.addons.stefan</groupId>
             <artifactId>clipboard</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.vaadin.addons.taefi</groupId>
