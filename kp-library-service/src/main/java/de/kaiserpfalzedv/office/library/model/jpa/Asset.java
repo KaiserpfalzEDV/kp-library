@@ -17,17 +17,33 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
-import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * <p>Asset -- The JPA implementation of {@link de.kaiserpfalzedv.office.library.model.Asset}.</p>

@@ -16,19 +16,18 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>kp-library</artifactId>
         <groupId>de.kaiserpfalz-edv.office.library</groupId>
-        <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>kp-library-bom</artifactId>
-    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>KP Library :: BOM</name>
@@ -40,15 +39,7 @@
             <dependency>
                 <groupId>de.kaiserpfalz-edv.commons</groupId>
                 <artifactId>kp-commons-bom</artifactId>
-                <version>3.0.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- Vaadin Platform BOM -->
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <version>23.3.6</version>
+                <version>3.2.5-1-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,45 +47,43 @@
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-parent</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-bom</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-api</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-service</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-client</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-user-ui</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-librarian-ui</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.kaiserpfalz-edv.office.library</groupId>
                 <artifactId>kp-library-cli</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
 </project>

@@ -17,10 +17,10 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.api.resources.HasId;
-
-import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
+
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * <p>AssetBorrow -- Active borrow of an asset.</p>

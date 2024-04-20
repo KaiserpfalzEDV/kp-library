@@ -17,11 +17,12 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * <p>ISSN -- International Standard Serial Number</p>

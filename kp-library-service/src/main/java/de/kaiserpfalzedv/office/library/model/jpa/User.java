@@ -17,16 +17,28 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * <p>User -- The JPA implementation for {@link de.kaiserpfalzedv.office.library.model.User}.</p>

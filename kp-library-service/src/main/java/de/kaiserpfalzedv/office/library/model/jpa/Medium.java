@@ -17,11 +17,19 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  * <p>Medium -- JPA implementation for {@link de.kaiserpfalzedv.office.library.model.Medium}.</p>

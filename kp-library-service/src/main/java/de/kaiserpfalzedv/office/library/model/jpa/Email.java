@@ -17,18 +17,23 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * <p>Email -- The JPA implementation for {@link de.kaiserpfalzedv.office.library.api.Email}</p>

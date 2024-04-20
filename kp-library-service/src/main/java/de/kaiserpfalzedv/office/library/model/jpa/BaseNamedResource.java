@@ -17,18 +17,23 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * <p>BaseNamedResource -- A base resource with namespace and name information for the kp-library client.</p>

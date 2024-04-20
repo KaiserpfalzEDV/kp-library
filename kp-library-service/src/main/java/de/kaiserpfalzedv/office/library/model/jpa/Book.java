@@ -17,21 +17,22 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import de.kaiserpfalzedv.commons.api.resources.HasName;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * <p>Book -- The JPA implementation for {@link de.kaiserpfalzedv.office.library.model.Book}.</p>

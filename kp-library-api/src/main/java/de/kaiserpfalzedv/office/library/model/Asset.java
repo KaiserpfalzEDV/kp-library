@@ -17,15 +17,15 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.office.library.api.HasAcquirementDate;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasLocation;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.util.Optional;
-import java.util.UUID;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * <p>Asset -- A single asset of the library.</p>

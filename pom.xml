@@ -6,7 +6,7 @@
 
     <groupId>de.kaiserpfalz-edv.office.library</groupId>
     <artifactId>kp-library</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>KP Library</name>
@@ -25,11 +25,5 @@
         <module>kp-library-bom</module>
 
         <module>kp-library-api</module>
-        <module>kp-library-client</module>
-        <module>kp-library-service</module>
-
-        <module>kp-library-ui-librarian</module>
-        <module>kp-library-ui-user</module>
-        <module>kp-library-ui-cli</module>
     </modules>
 </project>

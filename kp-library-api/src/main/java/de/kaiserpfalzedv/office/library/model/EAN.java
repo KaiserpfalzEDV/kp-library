@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * <p>EAN -- This medium has an EAN assigned.</p>

@@ -17,8 +17,9 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import jakarta.validation.constraints.NotNull;
 
 /**
  * <p>ISBN -- International Standard Book Number</p>

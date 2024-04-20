@@ -17,20 +17,30 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import de.kaiserpfalzedv.commons.api.resources.HasId;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.UUID;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * <p>BorrowHistoryEntry -- The JPA implementation of
@@ -66,7 +76,6 @@ public class BorrowHistoryEntry implements de.kaiserpfalzedv.office.library.mode
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
-    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(
             name = "ID",
             length = 36,
@@ -105,7 +114,6 @@ public class BorrowHistoryEntry implements de.kaiserpfalzedv.office.library.mode
             maxLength = HasId.VALID_UUID_LENGTH,
             required = true
     )
-    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(
             name = "USER_ID",
             length = 36,
@@ -126,7 +134,6 @@ public class BorrowHistoryEntry implements de.kaiserpfalzedv.office.library.mode
             maxLength = HasId.VALID_UUID_LENGTH,
             required = true
     )
-    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(
             name = "ASSET_ID",
             length = 36,

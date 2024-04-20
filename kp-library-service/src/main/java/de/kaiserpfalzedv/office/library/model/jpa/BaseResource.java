@@ -19,13 +19,12 @@ package de.kaiserpfalzedv.office.library.model.jpa;
 
 import de.kaiserpfalzedv.commons.jpa.AbstractRevisionedJPAEntity;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-
-import javax.persistence.MappedSuperclass;
 
 /**
  * <p>BaseResource -- A base resource information for the kp-library client.</p>

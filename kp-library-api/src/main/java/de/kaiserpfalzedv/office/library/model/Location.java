@@ -17,19 +17,21 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
 import de.kaiserpfalzedv.office.library.api.HasDisplayName;
 import de.kaiserpfalzedv.office.library.api.HasRecord;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
-import javax.validation.constraints.NotNull;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * <p>Location -- A location for a resource.</p>
