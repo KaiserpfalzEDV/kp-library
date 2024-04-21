@@ -125,6 +125,7 @@ public class SecurityConfiguration {
         };
     }
 
+    @SuppressWarnings("unchecked")
     private Set<GrantedAuthority> getOidcUserInfo(GrantedAuthority authority) {
         Set<GrantedAuthority> result = new HashSet<>();
 
@@ -150,6 +151,7 @@ public class SecurityConfiguration {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     private Set<GrantedAuthority> getOauth2UserAttributes(GrantedAuthority authority) {
         Set<GrantedAuthority> result = new HashSet<>();
 
