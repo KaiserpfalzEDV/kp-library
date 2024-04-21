@@ -30,7 +30,6 @@
     <artifactId>kp-library-bom</artifactId>
     <packaging>pom</packaging>
 
-    <name>KP Library :: BOM</name>
     <description>The BOM for all kp-library modules</description>
 
 

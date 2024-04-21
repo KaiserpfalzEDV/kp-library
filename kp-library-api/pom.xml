@@ -28,7 +28,6 @@
     </parent>
 
     <artifactId>kp-library-api</artifactId>
-    <name>KP Library :: API</name>
     <description>The library model.</description>
 
     <build>
