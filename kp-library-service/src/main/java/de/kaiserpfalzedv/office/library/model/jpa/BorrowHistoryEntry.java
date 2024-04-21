@@ -21,7 +21,6 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -74,7 +73,6 @@ public class BorrowHistoryEntry implements de.kaiserpfalzedv.office.library.mode
             required = true
     )
     @Id
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
     @Column(
             name = "ID",
