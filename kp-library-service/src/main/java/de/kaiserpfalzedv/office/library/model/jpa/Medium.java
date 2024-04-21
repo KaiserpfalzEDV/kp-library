@@ -17,11 +17,15 @@
 
 package de.kaiserpfalzedv.office.library.model.jpa;
 
+import static jakarta.persistence.DiscriminatorType.STRING;
+import static jakarta.persistence.InheritanceType.SINGLE_TABLE;
+
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -46,7 +50,8 @@ import lombok.experimental.SuperBuilder;
                 @UniqueConstraint(name = "MEDIUMS_EAN_UK", columnNames = {"EAN"})
         }
 )
-@DiscriminatorColumn
+@Inheritance(strategy = SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = STRING, length = 31)
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor

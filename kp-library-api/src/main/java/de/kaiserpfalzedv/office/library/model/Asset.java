@@ -56,11 +56,15 @@ public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDispla
 
     @Override
     default String getShortName() {
-        if (getDisplayName().length() <= 20) {
+        if (getDisplayName().length() <= SHORT_NAME_SIZE) {
             return getDisplayName();
         } else {
-            return getName().substring(0, 17 - createCounterPostfix().length()) + "..." + createCounterPostfix();
+            return getName().substring(0, calculateShortNameAbbreviatedLength()) + SHORT_NAME_CUTTING_SYMBOLS + createCounterPostfix();
         }
+    }
+
+    private int calculateShortNameAbbreviatedLength() {
+        return SHORT_NAME_SIZE - SHORT_NAME_CUTTING_SYMBOLS.length() - createCounterPostfix().length();
     }
 
     @NotNull

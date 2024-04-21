@@ -26,6 +26,9 @@ import de.kaiserpfalzedv.commons.api.resources.HasName;
  * @since 1.0.0  2023-01-15
  */
 public interface HasDisplayName extends HasName {
+    final int SHORT_NAME_SIZE = 20;
+    final String SHORT_NAME_CUTTING_SYMBOLS = "...";
+
     /**
      * Returns a user displayable name. Defaults to {@link HasName#getName()}.
      *
@@ -42,8 +45,8 @@ public interface HasDisplayName extends HasName {
      * @return a name of maximum 20 characters of length.
      */
     default String getShortName() {
-        if (getName().length() > 20) {
-            return getName().substring(0, 17) + "...";
+        if (getName().length() > SHORT_NAME_SIZE) {
+            return getName().substring(0, SHORT_NAME_SIZE - SHORT_NAME_CUTTING_SYMBOLS.length()) + SHORT_NAME_CUTTING_SYMBOLS;
         } else {
             return getName();
         }

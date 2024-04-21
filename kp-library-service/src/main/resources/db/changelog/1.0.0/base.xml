@@ -1,24 +1,24 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <!--
-  ~ Copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
+    ~ Copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti
+    ~
+    ~ This program is free software: you can redistribute it and/or modify
+    ~ it under the terms of the GNU General Public License as published by
+    ~ the Free Software Foundation, either version 3 of the License, or
+    ~ (at your option) any later version.
+    ~
+    ~ This program is distributed in the hope that it will be useful,
+    ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ~ GNU General Public License for more details.
+    ~
+    ~ You should have received a copy of the GNU General Public License
+    ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="20230118-rlichti-001" author="rlichti">
         <sql dbms="h2, mysql, mariadb, postgresql" endDelimiter=";">
@@ -37,8 +37,8 @@
         <createTable tableName="MEDIUMS" schemaName="LIBRARY">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="MEDIUMS_ID_UK"
-                             primaryKey="true" primaryKeyName="MEDIUMS_PK"
+                            unique="true" uniqueConstraintName="MEDIUMS_ID_UK"
+                            primaryKey="true" primaryKeyName="MEDIUMS_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -70,8 +70,8 @@
         <createTable tableName="ASSETS" schemaName="LIBRARY">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="ASSETS_ID_UK"
-                             primaryKey="true" primaryKeyName="ASSETS_PK"
+                            unique="true" uniqueConstraintName="ASSETS_ID_UK"
+                            primaryKey="true" primaryKeyName="ASSETS_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -100,8 +100,8 @@
         <createTable tableName="BORROWS" schemaName="LIBRARY">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="BORROWS_ID_UK"
-                             primaryKey="true" primaryKeyName="BORROWS_PK"
+                            unique="true" uniqueConstraintName="BORROWS_ID_UK"
+                            primaryKey="true" primaryKeyName="BORROWS_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -127,8 +127,8 @@
         <createTable tableName="BORROWHISTORY" schemaName="LIBRARY">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="BORROWHISTORY_ID_UK"
-                             primaryKey="true" primaryKeyName="BORROWHISTORY_PK"
+                            unique="true" uniqueConstraintName="BORROWHISTORY_ID_UK"
+                            primaryKey="true" primaryKeyName="BORROWHISTORY_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -153,8 +153,8 @@
         <createTable tableName="LOCATIONS" schemaName="LIBRARY">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="LOCATIONS_ID_UK"
-                             primaryKey="true" primaryKeyName="LOCATIONS_PK"
+                            unique="true" uniqueConstraintName="LOCATIONS_ID_UK"
+                            primaryKey="true" primaryKeyName="LOCATIONS_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -181,8 +181,8 @@
         <createTable tableName="USERS" schemaName="IAM">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false"
-                             unique="true" uniqueConstraintName="USERS_ID_UK"
-                             primaryKey="true" primaryKeyName="USERS_PK"
+                            unique="true" uniqueConstraintName="USERS_ID_UK"
+                            primaryKey="true" primaryKeyName="USERS_PK"
                 />
             </column>
             <column name="VERSION" type="INT" defaultValueNumeric="0">
@@ -212,25 +212,25 @@
 
 
         <addUniqueConstraint constraintName="ASSETS_MEDIUM_UK"
-                             schemaName="LIBRARY" tableName="ASSETS" columnNames="MEDIUM_ID,COUNTER"/>
+                            schemaName="LIBRARY" tableName="ASSETS" columnNames="MEDIUM_ID,COUNTER"/>
 
         <addUniqueConstraint constraintName="BORROWS_UK"
-                             schemaName="LIBRARY" tableName="BORROWS" columnNames="ASSET_ID,USER_ID"/>
+                            schemaName="LIBRARY" tableName="BORROWS" columnNames="ASSET_ID,USER_ID"/>
 
         <addUniqueConstraint constraintName="MEDIUMS_NAME_UK"
-                             schemaName="LIBRARY" tableName="MEDIUMS" columnNames="NAMESPACE,NAME"/>
+                            schemaName="LIBRARY" tableName="MEDIUMS" columnNames="NAMESPACE,NAME"/>
 
         <addUniqueConstraint constraintName="MEDIUMS_EAN_UK"
-                             schemaName="LIBRARY" tableName="MEDIUMS" columnNames="EAN"/>
+                            schemaName="LIBRARY" tableName="MEDIUMS" columnNames="EAN"/>
 
         <addUniqueConstraint constraintName="LOCATIONS_NAME_UK"
-                             schemaName="LIBRARY" tableName="LOCATIONS" columnNames="NAMESPACE,NAME"/>
+                            schemaName="LIBRARY" tableName="LOCATIONS" columnNames="NAMESPACE,NAME"/>
 
         <addUniqueConstraint constraintName="USERS_NAME_UK"
-                             schemaName="IAM" tableName="USERS" columnNames="NAMESPACE,NAME"/>
+                            schemaName="IAM" tableName="USERS" columnNames="NAMESPACE,NAME"/>
 
         <addUniqueConstraint constraintName="USERS_EMAIL_UK"
-                             schemaName="IAM" tableName="USERS" columnNames="EMAIL_LOCAL_PART,EMAIL_DOMAIN"/>
+                            schemaName="IAM" tableName="USERS" columnNames="EMAIL_LOCAL_PART,EMAIL_DOMAIN"/>
 
 
         <createIndex schemaName="LIBRARY" tableName="ASSETS" indexName="ASSETS_LOCATION_IDX">
