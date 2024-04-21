@@ -42,18 +42,16 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
-            <artifactId>kp-commons-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
-            <artifactId>kp-commons-rest</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>de.kaiserpfalz-edv.office.library</groupId>
             <artifactId>kp-library-api</artifactId>
+        </dependency>
+
+        <!-- Communication -->
+        <dependency>
+            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <artifactId>kp-commons-rest</artifactId>
         </dependency>
 
         <!-- Security -->
@@ -71,6 +69,10 @@
         </dependency>
 
         <!-- Persistence -->
+        <dependency>
+            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <artifactId>kp-commons-jpa</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
