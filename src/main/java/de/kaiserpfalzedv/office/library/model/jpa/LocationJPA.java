@@ -106,16 +106,16 @@ public class LocationJPA extends BaseNamedResourceJPA implements Location {
     @Transient
     @JsonIgnore
     @Override
-    public Optional<de.kaiserpfalzedv.office.library.model.Location> getPartOf() {
+    public Optional<Location> getPartOf() {
         return Optional.ofNullable(partOf);
     }
 
     @Transient
     @JsonIgnore
     @Override
-    public Set<de.kaiserpfalzedv.office.library.model.Location> getSubLocations() {
+    public Set<Location> getSubLocations() {
         return subLocations.stream()
-                .map(d -> (de.kaiserpfalzedv.office.library.model.Location) d)
+                .map(d -> (Location) d)
                 .collect(Collectors.toUnmodifiableSet());
     }
 }

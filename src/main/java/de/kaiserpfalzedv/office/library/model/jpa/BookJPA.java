@@ -67,6 +67,6 @@ public class BookJPA extends MediumJPA implements Book {
     @Pattern(regexp = HasName.VALID_NAME_PATTERN, message = HasName.VALID_NAME_PATTERN_MSG)
     @Transient
     public String getKind() {
-        return de.kaiserpfalzedv.office.library.model.Book.KIND;
+        return Book.KIND;
     }
 }
