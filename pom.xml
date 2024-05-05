@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.kaiserpfalz-edv.office.library</groupId>
+    <parent>
+        <artifactId>kp-spring-boot-parent</artifactId>
+        <groupId>de.kaiserpfalz-edv.commons</groupId>
+        <version>3.2.5-1-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>de.kaiserpfalz-edv.service</groupId>
     <artifactId>kp-library</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <description>
-        The library management system.
+        The Library management service.
     </description>
 
     <properties>
@@ -19,12 +25,76 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <modules>
-        <module>kp-library-parent</module>
-        <module>kp-library-service-parent</module>
-        <module>kp-library-bom</module>
+    <scm>
+        <url>https://github.com/KaiserpfalzEDV/kp-library</url>
+        <connection>scm:git:git://github.com/KaiserpfalzEDV/kp-library.git</connection>
+        <developerConnection>scm:git:git@github.com:KaiserpfalzEDV/kp-library.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
-        <module>kp-library-api</module>
-        <module>kp-library-service</module>
-    </modules>
+    <distributionManagement>
+        <repository>
+            <id>kp-library</id>
+            <name>GitHub Packages for kp-library</name>
+            <url>https://maven.pkg.github.com/KaiserpfalzEDV/kp-library</url>
+        </repository>
+    </distributionManagement>
+
+
+    <build>
+        <finalName>app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.kaiserpfalz-edv.commons</groupId>
+                <artifactId>kp-commons-bom</artifactId>
+                <version>3.2.5-1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Communication -->
+        <dependency>
+            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <artifactId>kp-commons-rest</artifactId>
+        </dependency>
+
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+        <!-- Persistence -->
+        <dependency>
+            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <artifactId>kp-commons-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
