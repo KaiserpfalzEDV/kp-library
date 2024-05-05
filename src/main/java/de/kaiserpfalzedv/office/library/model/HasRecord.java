@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.api;
+package de.kaiserpfalzedv.office.library.model;
 
 import java.time.OffsetDateTime;
 

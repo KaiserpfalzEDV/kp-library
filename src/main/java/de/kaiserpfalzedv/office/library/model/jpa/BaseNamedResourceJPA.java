@@ -21,7 +21,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
+import de.kaiserpfalzedv.office.library.model.HasDisplayName;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotEmpty;

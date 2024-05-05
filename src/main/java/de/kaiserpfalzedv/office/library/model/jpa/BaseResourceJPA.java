@@ -18,7 +18,7 @@
 package de.kaiserpfalzedv.office.library.model.jpa;
 
 import de.kaiserpfalzedv.commons.jpa.AbstractRevisionedJPAEntity;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
+import de.kaiserpfalzedv.office.library.model.HasRecord;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -15,16 +15,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.api;
+package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.office.library.model.Location;
+import java.time.ZonedDateTime;
 
 /**
- * <p>HasLocation -- The resource is located somewhere.</p>
+ * <p>HasAcquirementDate -- This interface contains the procurement date.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
-public interface HasLocation {
-    Location getLocation();
+public interface HasAcquirementDate {
+    /**
+     * @return the date this resource has been acquired.
+     */
+    ZonedDateTime getAcquirementDate();
 }

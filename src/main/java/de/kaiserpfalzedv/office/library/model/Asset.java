@@ -21,9 +21,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import de.kaiserpfalzedv.commons.api.resources.HasId;
-import de.kaiserpfalzedv.office.library.api.HasAcquirementDate;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasLocation;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 

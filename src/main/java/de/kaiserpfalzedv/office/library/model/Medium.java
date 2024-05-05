@@ -21,7 +21,6 @@ import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasKind;
 import de.kaiserpfalzedv.commons.api.resources.HasName;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 
 /**
  * <p>Medium -- A generic medium (weather physical or virtual).</p>

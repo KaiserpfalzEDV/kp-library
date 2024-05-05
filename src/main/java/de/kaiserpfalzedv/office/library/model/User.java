@@ -19,8 +19,6 @@ package de.kaiserpfalzedv.office.library.model;
 
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 
 /**
  * <p>User -- A user of the library.</p>

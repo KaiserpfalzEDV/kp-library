@@ -27,8 +27,6 @@ import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.commons.api.resources.HasNameSpace;
-import de.kaiserpfalzedv.office.library.api.HasDisplayName;
-import de.kaiserpfalzedv.office.library.api.HasRecord;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
