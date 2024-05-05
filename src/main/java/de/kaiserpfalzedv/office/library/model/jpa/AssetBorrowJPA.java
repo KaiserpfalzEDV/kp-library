@@ -1,0 +1,151 @@
+/*
+ * Copyright (c) 2023. Roland T. Lichti, Kaiserpfalz EDV-Service.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package de.kaiserpfalzedv.office.library.model.jpa;
+
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import de.kaiserpfalzedv.commons.api.resources.HasId;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.Version;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
+
+/**
+ * <p>AssetBorrow -- </p>
+ *
+ * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
+ * @since 1.0.0  2023-01-15
+ */
+@Schema(
+        title = "AssetBorrow",
+        description = "A current borrow of an asset."
+)
+@Jacksonized
+@Entity
+@Table(
+        name = "BORROWS",
+        schema = AboutJPA.DB_SCHEMA,
+        uniqueConstraints = {
+                @UniqueConstraint(name = "BORROWS_UK", columnNames = {"ASSET_ID","USER_ID"})
+        }
+)
+@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
+@EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
+public class AssetBorrowJPA implements de.kaiserpfalzedv.office.library.api.model.AssetBorrow {
+    @Schema(
+            title = "ID",
+            description = "The technical ID of this resource",
+            pattern = HasId.VALID_UUID_PATTERN,
+            example = HasId.VALID_UUID_EXAMPLE,
+            minLength = HasId.VALID_UUID_LENGTH,
+            maxLength = HasId.VALID_UUID_LENGTH,
+            required = true
+    )
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @Column(
+            name = "ID",
+            length = 36,
+            nullable = false,
+            updatable = false,
+            unique = true
+    )
+    @ToString.Include
+    @EqualsAndHashCode.Include
+    protected UUID id;
+
+    @Schema(
+            title = "Version",
+            description = "Version of this resource (for optimistic locking)",
+            minimum = "0",
+            example = "3442",
+            required = true
+    )
+    @Min(0)
+    @NotNull
+    @Version
+    @Column(
+            name = "VERSION",
+            nullable = false
+    )
+    @ToString.Include
+    @EqualsAndHashCode.Include
+    protected Integer version;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(
+            name = "USER_ID",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "BORROWS_USERS_FK")
+    )
+    private UserJPA user;
+
+    @OneToOne(optional = false, orphanRemoval = true)
+    @JoinColumn(
+            name = "ASSET_ID",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "BORROWS_ASSETS_FK")
+    )
+    private AssetJPA asset;
+
+    @Schema(
+            title = "Borrow Time",
+            description = "The timestamp of the borrow.",
+            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?",
+            example = "2023-01-16T01:23:45.789Z"
+    )
+    @Column(name = "BORROW_TIME", nullable = false, updatable = false)
+    @NotNull
+    private OffsetDateTime borrowTime;
+
+    @Schema(
+            title = "Latest Return",
+            description = "The latest return timestamp.",
+            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?",
+            example = "2023-01-16T01:23:45.789Z"
+    )
+    @Column(name = "LATEST_RETURN", nullable = false)
+    @NotNull
+    private OffsetDateTime latestReturnTime;
+}
