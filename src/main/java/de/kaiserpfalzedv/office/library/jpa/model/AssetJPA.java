@@ -19,7 +19,6 @@ package de.kaiserpfalzedv.office.library.jpa.model;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -96,7 +95,7 @@ public class AssetJPA extends BaseResourceJPA implements Asset {
     @JsonIgnore
     @Transient
     @Override
-    public Optional<UUID> getCurrentBorrow() {
+    public Optional<Long> getCurrentBorrow() {
         if (currentBorrow == null) {
             return Optional.empty();
         }

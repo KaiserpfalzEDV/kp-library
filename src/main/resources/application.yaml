@@ -26,12 +26,16 @@ spring:
           kaiserpfalz-edv:
             user-name-attribute: preferred_username
             issuer-url: ${OIDC_ISSUER}
+            authorization-uri: ${OIDC_PROVIDER_BASE}/auth
+            token-uri: ${OIDC_PROVIDER_BASE}/token
+            user-info-uri: ${OIDC_PROVIDER_BASE}/userinfo
         registration: 
           kaiserpfalz-edv:
             client-id: ${OIDC_CLIENT}
             client-secret: ${OIDC_CREDENTIAL}
             authorization-grant-type: authorization_code
             scope: openid
+            redirect-uri: http://localhost:8080/
     resourceserver:
       jwt:
         issuer-url: ${OIDC_ISSUER}

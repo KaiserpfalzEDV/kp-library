@@ -18,7 +18,6 @@
 package de.kaiserpfalzedv.office.library.jpa.model;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -26,17 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.office.library.model.AssetBorrow;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -77,24 +66,23 @@ public class AssetBorrowJPA implements AssetBorrow {
     @Schema(
             title = "ID",
             description = "The technical ID of this resource",
-            pattern = HasId.VALID_UUID_PATTERN,
-            example = HasId.VALID_UUID_EXAMPLE,
-            minLength = HasId.VALID_UUID_LENGTH,
-            maxLength = HasId.VALID_UUID_LENGTH,
+            pattern = HasId.VALID_ID_PATTERN,
+            example = HasId.VALID_ID_EXAMPLE,
+            minLength = HasId.MIN_LENGTH,
+            maxLength = HasId.MAX_LENGTH,
             required = true
     )
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @GeneratedValue
     @Column(
             name = "ID",
-            length = 36,
             nullable = false,
             updatable = false,
             unique = true
     )
     @ToString.Include
     @EqualsAndHashCode.Include
-    protected UUID id;
+    protected Long id;
 
     @Schema(
             title = "Version",
@@ -136,7 +124,7 @@ public class AssetBorrowJPA implements AssetBorrow {
             pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?",
             example = "2023-01-16T01:23:45.789Z"
     )
-    @Column(name = "BORROW_TIME", nullable = false, updatable = false)
+    @Column(name = "BORROW_DATE", nullable = false, updatable = false)
     @NotNull
     private OffsetDateTime borrowTime;
 

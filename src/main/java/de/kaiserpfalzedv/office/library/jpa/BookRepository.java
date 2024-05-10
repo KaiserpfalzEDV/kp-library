@@ -19,8 +19,6 @@ package de.kaiserpfalzedv.office.library.jpa;
 
 
 
-import java.util.UUID;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import de.kaiserpfalzedv.office.library.jpa.model.BookJPA;
@@ -32,6 +30,6 @@ import de.kaiserpfalzedv.office.library.jpa.model.BookJPA;
  * @version 1.0.0
  * @since 2024-05-05
  */
-public interface BookRepository extends JpaRepository<UUID, BookJPA> {
+public interface BookRepository extends JpaRepository<Long, BookJPA> {
     
 }

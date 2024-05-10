@@ -17,10 +17,9 @@
 
 package de.kaiserpfalzedv.office.library.model;
 
-import de.kaiserpfalzedv.commons.api.resources.HasId;
-
 import java.time.OffsetDateTime;
-import java.util.UUID;
+
+import de.kaiserpfalzedv.commons.api.resources.HasId;
 
 /**
  * <p>BorrowHistoryEntry -- An entry of a borrow event.</p>
@@ -31,8 +30,8 @@ import java.util.UUID;
  * @since 1.0.0  2023-01-15
  */
 public interface BorrowHistoryEntry extends HasId {
-    UUID getUser();
-    UUID getAsset();
+    Long getUser();
+    Long getAsset();
     OffsetDateTime getBorrowDate();
     OffsetDateTime getReturnDate();
 }

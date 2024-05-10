@@ -18,7 +18,6 @@
 package de.kaiserpfalzedv.office.library.model;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import de.kaiserpfalzedv.commons.api.resources.HasId;
 import jakarta.validation.constraints.Min;
@@ -37,7 +36,7 @@ public interface Asset extends HasId, HasAcquirementDate, HasLocation, HasDispla
     @Min(0)
     int getCounter();
 
-    Optional<UUID> getCurrentBorrow();
+    Optional<Long> getCurrentBorrow();
 
     default String getName() {
         return getMedium().getName();

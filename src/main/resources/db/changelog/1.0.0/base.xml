@@ -22,7 +22,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="20230118-rlichti-001" author="rlichti">
         <createTable tableName="MEDIUMS">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="MEDIUMS_ID_UK"
                             primaryKey="true" primaryKeyName="MEDIUMS_PK"
@@ -55,7 +55,7 @@
         </createTable>
 
         <createTable tableName="ASSETS">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="ASSETS_ID_UK"
                             primaryKey="true" primaryKeyName="ASSETS_PK"
@@ -71,7 +71,7 @@
             <column name="MODIFIED" type="TIMESTAMP"/>
             <column name="REVISIONED" type="TIMESTAMP"/>
 
-            <column name="MEDIUM_ID" type="VARCHAR(36)">
+            <column name="MEDIUM_ID" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="ASSETS_MEDIUM_NN"/>
             </column>
 
@@ -82,10 +82,14 @@
             <column name="ACQUIREMENT_DATE" type="TIMESTAMP">
                 <constraints nullable="false" notNullConstraintName="ASSETS_ACQUIREMENT_NN"/>
             </column>
+
+            <column name="LOCATION_ID" type="BIGINT">
+                <constraints nullable="false" notNullConstraintName="ASSETS_LOCATION_NN"/>
+            </column>
         </createTable>
 
         <createTable tableName="BORROWS">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="BORROWS_ID_UK"
                             primaryKey="true" primaryKeyName="BORROWS_PK"
@@ -95,11 +99,11 @@
                 <constraints nullable="false" notNullConstraintName="BORROWS_VERSION_NN"/>
             </column>
 
-            <column name="USER_ID" type="VARCHAR(36)">
+            <column name="USER_ID" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="BORROWS_USER_NN"/>
             </column>
 
-            <column name="ASSET_ID" type="VARCHAR(36)">
+            <column name="ASSET_ID" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="BORROWS_ASSET_NN"/>
             </column>
 
@@ -112,7 +116,7 @@
         </createTable>
 
         <createTable tableName="BORROWHISTORY">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="BORROWHISTORY_ID_UK"
                             primaryKey="true" primaryKeyName="BORROWHISTORY_PK"
@@ -122,23 +126,23 @@
                 <constraints nullable="false" notNullConstraintName="BORROWHISTORY_VERSION_NN"/>
             </column>
 
-            <column name="USER_ID" type="VARCHAR(36)">
+            <column name="USER_ID" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="BORROWHISTORY_USER_NN"/>
             </column>
-            <column name="ASSET_ID" type="VARCHAR(36)">
+            <column name="ASSET_ID" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="BORROWHISTORY_ASSET_NN"/>
             </column>
 
-            <column name="BORROW_TIME" type="TIMESTAMP">
+            <column name="BORROW_DATE" type="TIMESTAMP">
                 <constraints nullable="false" notNullConstraintName="BORROWHISTORY_BORROW_NN"/>
             </column>
-            <column name="RETURN_TIME" type="TIMESTAMP">
+            <column name="RETURN_DATE" type="TIMESTAMP">
                 <constraints nullable="false" notNullConstraintName="BORROWHISTORY_RETURN_NN"/>
             </column>
         </createTable>
 
         <createTable tableName="LOCATIONS">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="LOCATIONS_ID_UK"
                             primaryKey="true" primaryKeyName="LOCATIONS_PK"
@@ -161,12 +165,15 @@
                 <constraints nullable="false" notNullConstraintName="LOCATIONS_NAME_NN"/>
             </column>
 
-            <column name="PART_OF" type="VARCHAR(36)"/>
+            <column name="LOCATION_TYPE" type="VARCHAR(20)">
+                <constraints nullable="false" notNullConstraintName="LOCATIONS_TYPE_NN"/>
+            </column>
+            <column name="PART_OF" type="BIGINT"/>
         </createTable>
 
 
         <createTable tableName="USERS">
-            <column name="ID" type="VARCHAR(36)">
+            <column name="ID" type="BIGINT">
                 <constraints nullable="false"
                             unique="true" uniqueConstraintName="USERS_ID_UK"
                             primaryKey="true" primaryKeyName="USERS_PK"
@@ -229,7 +236,7 @@
         </createIndex>
 
         <createIndex tableName="BORROWS" indexName="BORROWS_BORROW_IDX">
-            <column name="BORROW_TIME"/>
+            <column name="BORROW_DATE"/>
         </createIndex>
 
         <createIndex tableName="BORROWS" indexName="BORROWS_RETURN_IDX">
@@ -292,9 +299,9 @@
             <dropUniqueConstraint constraintName="BOROWS_UK" tableName="LIBRARY"/>
             <dropUniqueConstraint constraintName="LOCATIONS_NAME_UK" tableName="LIBRARY"/>
 
-            <dropIndex indexName="ASSETS_LOCATION_IDX" tableName="LOCATION_ID"/>
+            <dropIndex indexName="ASSETS_LOCATION_IDX" tableName="LOCATIONS"/>
             <dropIndex indexName="ASSETS_ACQUIREMENT_IDX" tableName="ACQUIREMENT_DATE"/>
-            <dropIndex indexName="BORROWS_BORROW_IDX" tableName="BORROW_TIME"/>
+            <dropIndex indexName="BORROWS_BORROW_IDX" tableName="BORROW_DATE"/>
             <dropIndex indexName="BORROWS_RETURN_IDX" tableName="LATEST_RETURN"/>
             <dropIndex indexName="LOCATIONS_PART_OF_IDX" tableName="PART_OF"/>
 
@@ -317,7 +324,7 @@
     </changeSet>
 
     <changeSet id="20230118-rlichti-002" author="rlichti">
-        <loadUpdateData primaryKey="LOCTATIONS_PK" tableName="LOCATIONS"
+        <loadUpdateData primaryKey="ID" tableName="LOCATIONS"
                         file="locations.csv" relativeToChangelogFile="true" separator=";"/>
         <comment>Base Data</comment>
     </changeSet>

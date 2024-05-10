@@ -17,7 +17,7 @@
 
 package de.kaiserpfalzedv.office.library.jpa.model;
 
-import de.kaiserpfalzedv.commons.jpa.AbstractRevisionedJPAEntity;
+import de.kaiserpfalzedv.commons.jpa.AbstractJPAEntity;
 import de.kaiserpfalzedv.office.library.model.HasRecord;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
@@ -38,4 +38,4 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-public abstract class BaseResourceJPA extends AbstractRevisionedJPAEntity implements HasRecord {}
+public abstract class BaseResourceJPA extends AbstractJPAEntity implements HasRecord {}
