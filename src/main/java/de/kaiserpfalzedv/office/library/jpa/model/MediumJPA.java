@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.jpa;
+package de.kaiserpfalzedv.office.library.jpa.model;
 
 import static jakarta.persistence.DiscriminatorType.STRING;
 import static jakarta.persistence.InheritanceType.SINGLE_TABLE;

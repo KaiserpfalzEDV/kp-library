@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.jpa;
+package de.kaiserpfalzedv.office.library.jpa.model;
 
 import java.util.HashSet;
 import java.util.Optional;

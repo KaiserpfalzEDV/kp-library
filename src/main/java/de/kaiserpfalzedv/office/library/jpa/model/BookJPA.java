@@ -15,20 +15,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.kaiserpfalzedv.office.library.model.jpa;
+package de.kaiserpfalzedv.office.library.jpa.model;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import de.kaiserpfalzedv.office.library.model.Email;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import de.kaiserpfalzedv.commons.api.resources.HasName;
+import de.kaiserpfalzedv.office.library.model.Book;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,54 +36,37 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 /**
- * <p>Email -- The JPA implementation for {@link Email}</p>
+ * <p>Book -- The JPA implementation for {@link Book}.</p>
  *
  * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
  * @since 1.0.0  2023-01-15
  */
 @Schema(
-        title = "Email",
-        description = "The email address."
+        title = "Book",
+        description = "A traditional book."
 )
 @Jacksonized
-@Embeddable
+@Entity
+@DiscriminatorValue("BOOK")
 @SuperBuilder(toBuilder = true)
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
-@EqualsAndHashCode
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class EmailJPA implements Email {
+public class BookJPA extends MediumJPA implements Book {
     @Schema(
-            title = "LocalPart",
-            description = "The local part of the email.",
-            minLength = 1,
-            maxLength = 64
+            title = "Kind",
+            description = "The type of the medium.",
+            enumeration = {BookJPA.KIND},
+            example = BookJPA.KIND,
+            required = true
     )
-    @Size(min = 1, max = 64)
-    @NotEmpty
-    @Column(name = "EMAIL_LOCAL_PART", length = 65, nullable = false)
-    private String localPart;
-
-    @Schema(
-            title = "Domain",
-            description = "The domain part of the email.",
-            minLength = 2,
-            maxLength = 1000
-    )
-    @Size(min = 2, max = 1000)
-    @NotEmpty
-    @Column(name = "EMAIL_DOMAIN", length = 1000, nullable = false)
-    private String domain;
-
-    /**
-     * @return the string representation of this email address.
-     */
-    @JsonIgnore
-    @Transient
     @Override
-    public String getMailAddress() {
-        return localPart + "@" + domain;
+    @Size(min = 3, max = 100, message = "The length of the string must be between 3 and 100 characters long.")
+    @Pattern(regexp = HasName.VALID_NAME_PATTERN, message = HasName.VALID_NAME_PATTERN_MSG)
+    @Transient
+    public String getKind() {
+        return Book.KIND;
     }
 }
