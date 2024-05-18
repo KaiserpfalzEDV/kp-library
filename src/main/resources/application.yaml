@@ -25,7 +25,7 @@ spring:
         provider:
           kaiserpfalz-edv:
             user-name-attribute: preferred_username
-            issuer-url: ${OIDC_ISSUER}
+            issuer-uri: ${OIDC_ISSUER}
             authorization-uri: ${OIDC_PROVIDER_BASE}/auth
             token-uri: ${OIDC_PROVIDER_BASE}/token
             user-info-uri: ${OIDC_PROVIDER_BASE}/userinfo
@@ -36,15 +36,60 @@ spring:
             authorization-grant-type: authorization_code
             scope: openid
             redirect-uri: http://localhost:8080/
-    resourceserver:
-      jwt:
-        issuer-url: ${OIDC_ISSUER}
+      resourceserver:
+        jwt:
+          issuer-uri: ${OIDC_ISSUER}
+          jwk-set-uri: ${OIDC_PROVIDER_BASE}
 
   https:
-    enabled: TRUE
+    enabled: FALSE
 
   http:
     enabled: TRUE
 
   banner:
     location: classpath:/banner.txt
+
+  jpa:
+    open-in-view: FALSE
+
+hibernate:
+  cache:
+    "use_second_level_cache": TRUE
+    region:
+      "factory_class": org.hibernate.cache.ehcache.EhCacheRegionFactory
+
+
+logging:
+  level:
+    root: INFO
+    "org.springframework": INFO
+    "de.kaiserpfalzedv": DEBUG
+
+server:
+  port: 8080
+
+management:
+  address: 127.0.0.1
+  port: 8090
+
+  security:
+    enabled: FALSE
+
+  endpoints:
+    health:
+      time-to-live: 15000
+    web:
+      exposure:
+        include: ['prometheus','health','ready','info']
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true

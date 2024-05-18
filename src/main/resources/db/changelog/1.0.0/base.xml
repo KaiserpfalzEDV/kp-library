@@ -79,8 +79,8 @@
                 <constraints nullable="false" notNullConstraintName="ASSETS_COUNTER_NN"/>
             </column>
 
-            <column name="ACQUIREMENT_DATE" type="TIMESTAMP">
-                <constraints nullable="false" notNullConstraintName="ASSETS_ACQUIREMENT_NN"/>
+            <column name="ACQUISITION_DATE" type="TIMESTAMP">
+                <constraints nullable="false" notNullConstraintName="ASSETS_ACQUISITION_NN"/>
             </column>
 
             <column name="LOCATION_ID" type="BIGINT">
@@ -195,12 +195,8 @@
             <column name="NAME" type="VARCHAR(100)">
                 <constraints nullable="false" notNullConstraintName="USERS_NAME_NN"/>
             </column>
-
-            <column name="EMAIL_LOCAL_PART" type="VARCHAR(64)">
-                <constraints nullable="false" notNullConstraintName="USERS_EMAIL_LOCALPART_NN"/>
-            </column>
-            <column name="EMAIL_DOMAIN" type="VARCHAR(1000)">
-                <constraints nullable="false" notNullConstraintName="USERS_EMAIL_DOMAIN_NN"/>
+            <column name="IDP_NAME" type="VARCHAR(1000)">
+                <constraints nullable="false" notNullConstraintName="USERS_IDP_NAME_NN" />
             </column>
         </createTable>
 
@@ -223,16 +219,16 @@
         <addUniqueConstraint constraintName="USERS_NAME_UK"
                             tableName="USERS" columnNames="NAMESPACE,NAME"/>
 
-        <addUniqueConstraint constraintName="USERS_EMAIL_UK"
-                            tableName="USERS" columnNames="EMAIL_LOCAL_PART,EMAIL_DOMAIN"/>
+        <addUniqueConstraint constraintName="USERS_IDP_NAME_UK"
+                            tableName="USERS" columnNames="IDP_NAME"/>
 
 
         <createIndex tableName="ASSETS" indexName="ASSETS_LOCATION_IDX">
             <column name="LOCATION_ID"/>
         </createIndex>
 
-        <createIndex tableName="ASSETS" indexName="ASSETS_ACQUIREMENT_IDX">
-            <column name="ACQUIREMENT_DATE"/>
+        <createIndex tableName="ASSETS" indexName="ASSETS_ACQUISITION_IDX">
+            <column name="ACQUISITION_DATE"/>
         </createIndex>
 
         <createIndex tableName="BORROWS" indexName="BORROWS_BORROW_IDX">
@@ -292,7 +288,7 @@
             <dropUniqueConstraint constraintName="LOCATIONS_ID_UK" tableName="LOCATIONS"/>
 
             <dropUniqueConstraint constraintName="USERS_NAME_UK" tableName="LIBRARY"/>
-            <dropUniqueConstraint constraintName="USERS_EMAIL_UK" tableName="LIBRARY"/>
+            <dropUniqueConstraint constraintName="USERS_IDP_NAME_UK" tableName="LIBRARY"/>
             <dropUniqueConstraint constraintName="MEDIUMS_NAME_UK" tableName="LIBRARY"/>
             <dropUniqueConstraint constraintName="MEDIUMS_EAN_UK" tableName="LIBRARY"/>
             <dropUniqueConstraint constraintName="ASSETS_MEDIUM_UK" tableName="LIBRARY"/>
@@ -300,7 +296,7 @@
             <dropUniqueConstraint constraintName="LOCATIONS_NAME_UK" tableName="LIBRARY"/>
 
             <dropIndex indexName="ASSETS_LOCATION_IDX" tableName="LOCATIONS"/>
-            <dropIndex indexName="ASSETS_ACQUIREMENT_IDX" tableName="ACQUIREMENT_DATE"/>
+            <dropIndex indexName="ASSETS_ACQUISITION_IDX" tableName="ACQUISITION_DATE"/>
             <dropIndex indexName="BORROWS_BORROW_IDX" tableName="BORROW_DATE"/>
             <dropIndex indexName="BORROWS_RETURN_IDX" tableName="LATEST_RETURN"/>
             <dropIndex indexName="LOCATIONS_PART_OF_IDX" tableName="PART_OF"/>

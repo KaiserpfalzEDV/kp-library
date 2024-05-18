@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2023. Roland T. Lichti, Kaiserpfalz EDV-Service.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package de.kaiserpfalzedv.office.library.jpa.inventory;
+
+import static jakarta.persistence.DiscriminatorType.STRING;
+import static jakarta.persistence.InheritanceType.SINGLE_TABLE;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import de.kaiserpfalzedv.office.library.domain.inventory.Medium;
+import de.kaiserpfalzedv.office.library.jpa.AboutJPA;
+import de.kaiserpfalzedv.office.library.jpa.BaseNamedResourceJPA;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+/**
+ * <p>Medium -- JPA implementation for {@link Medium}.</p>
+ *
+ * @author klenkes74 {@literal <rlichti@kaiserpfalz-edv.de>}
+ * @since 1.0.0  2023-01-15
+ */
+@Entity
+@Table(
+        name = "MEDIUMS",
+        schema = AboutJPA.DB_SCHEMA,
+        uniqueConstraints = {
+                @UniqueConstraint(name = "MEDIUMS_NAME_UK", columnNames = {"NAMESPACE","NAME"}),
+                @UniqueConstraint(name = "MEDIUMS_EAN_UK", columnNames = {"EAN"})
+        }
+)
+@Inheritance(strategy = SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = STRING, length = 31)
+@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+public abstract class MediumJPA extends BaseNamedResourceJPA {
+    @Schema(
+            title = "EAN -- International Article Number",
+            description = "The EAN13 number of the medium.",
+            example = "978-5-12345-678-9",
+            minLength = 13,
+            maxLength = 16,
+            required = true
+    )
+    @Column(name = "EAN", length = 16, nullable = false, unique = true)
+    @ToString.Include
+    private String ean;
+}
