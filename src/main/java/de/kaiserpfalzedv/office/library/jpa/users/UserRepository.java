@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import de.kaiserpfalzedv.office.library.domain.users.User;
 
@@ -31,6 +32,7 @@ import de.kaiserpfalzedv.office.library.domain.users.User;
  * @version 1.0.0
  * @since 2024-05-05
  */
+@Repository
 public interface UserRepository extends JpaRepository<UserJPA, Long>, de.kaiserpfalzedv.office.library.domain.users.UserRepository {
     default User save(final User user) {
         UserJPA jpa = new UserModelConverter().convertFromModel(user);
@@ -56,7 +58,7 @@ public interface UserRepository extends JpaRepository<UserJPA, Long>, de.kaiserp
     }
 
     default List<User> all() {
-        return new UserModelConverter().createFromPA(findAll());
+        return new UserModelConverter().createFromJPA(findAll());
     }
     
     default void delete(final String idpName) {

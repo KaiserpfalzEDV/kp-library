@@ -33,15 +33,16 @@ import de.kaiserpfalzedv.office.library.domain.users.User;
  * @since 2024-05-18
  */
 public class UserModelConverterTest {
+    private static UUID IDP_NAME = UUID.randomUUID();
     private static UserJPA DEFAULT_JPA = UserJPA.builder()
-            .idpName(UUID.randomUUID().toString())
+            .idpName(IDP_NAME.toString())
             .nameSpace("LIBRARY")
             .name("klenkes74")
             .created(OffsetDateTime.now())
             .modified(OffsetDateTime.now())
             .build();
 
-    private static User DEFAULT_MODEL = new User.InventoryUser(UUID.randomUUID().toString(), "LIBRARY", "klenkes74", OffsetDateTime.now(), OffsetDateTime.now());
+    private static User DEFAULT_MODEL = new User.InventoryUser(IDP_NAME.toString(), "LIBRARY", "klenkes74", OffsetDateTime.now(), OffsetDateTime.now());
 
     private final UserModelConverter sut = new UserModelConverter();
 

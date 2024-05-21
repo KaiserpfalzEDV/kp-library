@@ -58,7 +58,7 @@ public abstract class Converter<M, J> {
         return models.stream().map(this::convertFromModel).collect(Collectors.toList());
     }
 
-    public final List<M> createFromPA(final Collection<J> jpas) {
+    public final List<M> createFromJPA(final Collection<J> jpas) {
         return jpas.stream().map(this::convertFromJPA).collect(Collectors.toList());
     }
 }
