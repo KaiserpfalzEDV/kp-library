@@ -55,7 +55,6 @@ public abstract class BaseNamedResourceJPA extends BaseResourceJPA implements Ha
             required = true,
             defaultValue = "DEFAULT",
             pattern = HasName.VALID_NAME_PATTERN,
-            example = HasName.VALID_NAME_EXAMPLE,
             minLength = HasName.VALID_NAME_MIN_LENGTH,
             maxLength = HasName.VALID_NAME_MAX_LENGTH
     )
@@ -77,7 +76,6 @@ public abstract class BaseNamedResourceJPA extends BaseResourceJPA implements Ha
             description = "The name of the resource. It needs to be unique within the namespace.",
             required = true,
             pattern = HasName.VALID_NAME_PATTERN,
-            example = HasName.VALID_NAME_EXAMPLE,
             minLength = HasName.VALID_NAME_MIN_LENGTH,
             maxLength = HasName.VALID_NAME_MAX_LENGTH
     )

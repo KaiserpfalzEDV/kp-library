@@ -44,6 +44,7 @@ import lombok.RequiredArgsConstructor;
  */
 public interface Location extends HasNameSpace, HasDisplayName, HasTimestamps {
     record LocationImpl(String nameSpace, String name, Type locationType, Location parent, Set<Location> subLocations, OffsetDateTime created, OffsetDateTime modified) implements Location {
+        @Override
         public Optional<Location> partOf() {
             return Optional.ofNullable(parent);
         }
@@ -89,7 +90,6 @@ public interface Location extends HasNameSpace, HasDisplayName, HasTimestamps {
     @Schema(
             title = "Library Location Type",
             description = "Media can be stored in different locations. This is the type of the location.",
-            example = "SHELF",
             defaultValue = "SHELF",
             enumeration = {"SHELF", "ROOM", "BUILDING", "CAMPUS", "VIRTUAL"},
             required = true

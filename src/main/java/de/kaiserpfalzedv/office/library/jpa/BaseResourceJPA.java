@@ -40,7 +40,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
-public abstract class BaseResourceJPA extends AbstractJPAEntity implements HasTimestamps {
+public abstract class BaseResourceJPA extends AbstractJPAEntity<Long> implements HasTimestamps {
     public OffsetDateTime created() {
         return getCreated();
     }

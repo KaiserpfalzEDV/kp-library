@@ -7,7 +7,7 @@
     <parent>
         <artifactId>kp-spring-boot-parent</artifactId>
         <groupId>de.kaiserpfalz-edv.commons</groupId>
-        <version>3.2.5-1-SNAPSHOT</version>
+        <version>4.0.0</version>
         <relativePath/>
     </parent>
 
@@ -58,7 +58,7 @@
             <dependency>
                 <groupId>de.kaiserpfalz-edv.commons</groupId>
                 <artifactId>kp-commons-bom</artifactId>
-                <version>3.2.5-1-SNAPSHOT</version>
+                <version>4.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -68,7 +68,7 @@
     <dependencies>
         <!-- Communication -->
         <dependency>
-            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <groupId>de.kaiserpfalz-edv.commons</groupId>
             <artifactId>kp-commons-rest</artifactId>
         </dependency>
 
@@ -138,7 +138,7 @@
 
         <!-- Persistence -->
         <dependency>
-            <groupId>de.kaiserpfalz-edv.commons.modules</groupId>
+            <groupId>de.kaiserpfalz-edv.commons</groupId>
             <artifactId>kp-commons-jpa</artifactId>
         </dependency>
         <dependency>

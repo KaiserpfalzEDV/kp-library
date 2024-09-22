@@ -25,7 +25,7 @@ package de.kaiserpfalzedv.office.library.domain;
  * @version 1.0.0
  * @since 2024-05-18
  */
-public interface HasId extends de.kaiserpfalzedv.commons.api.resources.HasId {
+public interface HasId extends de.kaiserpfalzedv.commons.api.resources.HasId<Long> {
     /**
      * @return the internal id of this resource.
      */

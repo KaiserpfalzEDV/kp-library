@@ -23,7 +23,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import de.kaiserpfalzedv.commons.api.resources.HasId;
 import de.kaiserpfalzedv.office.library.domain.borrowing.BorrowHistory;
 import de.kaiserpfalzedv.office.library.jpa.AboutJPA;
 import jakarta.persistence.Column;
@@ -67,10 +66,6 @@ public class BorrowHistoryEntryJPA {
     @Schema(
             title = "ID",
             description = "The technical ID of this resource",
-            pattern = HasId.VALID_ID_PATTERN,
-            example = HasId.VALID_ID_EXAMPLE,
-            minLength = HasId.MIN_LENGTH,
-            maxLength = HasId.MAX_LENGTH,
             required = true
     )
     @Id
@@ -89,7 +84,6 @@ public class BorrowHistoryEntryJPA {
             title = "Version",
             description = "Version of this resource (for optimistic locking)",
             minimum = "0",
-            example = "3442",
             required = true
     )
     @Min(0)
@@ -106,10 +100,6 @@ public class BorrowHistoryEntryJPA {
     @Schema(
             title = "User ID",
             description = "The technical ID of the user",
-            pattern = HasId.VALID_ID_PATTERN,
-            example = HasId.VALID_ID_EXAMPLE,
-            minLength = HasId.MIN_LENGTH,
-            maxLength = HasId.MAX_LENGTH,
             required = true
     )
     @Column(
@@ -125,10 +115,6 @@ public class BorrowHistoryEntryJPA {
     @Schema(
             title = "Asset ID",
             description = "The technical ID of the asset",
-            pattern = HasId.VALID_ID_PATTERN,
-            example = HasId.VALID_ID_EXAMPLE,
-            minLength = HasId.MIN_LENGTH,
-            maxLength = HasId.MAX_LENGTH,
             required = true
     )
     @Column(
@@ -144,8 +130,7 @@ public class BorrowHistoryEntryJPA {
     @Schema(
             title = "Borrow Time",
             description = "The timestamp of the borrow of the asset.",
-            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?",
-            example = "2023-01-16T01:23:45.789Z"
+            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?"
     )
     @Column(name = "BORROW_DATE", nullable = false, updatable = false)
     @NotNull
@@ -153,8 +138,7 @@ public class BorrowHistoryEntryJPA {
     @Schema(
             title = "Return Time",
             description = "The timestamp of the return of the asset.",
-            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?",
-            example = "2023-01-16T01:23:45.789Z"
+            pattern = "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))(T[0-9][0-9]:[0-9][0-9](:[0-9][0-9])?(\\.[0-9]+)?(([+-][0-9][0-9]:[0-9][0-9])|Z)?)?)?"
     )
     @Column(name = "RETURN_TIME", nullable = false, updatable = false)
     @NotNull

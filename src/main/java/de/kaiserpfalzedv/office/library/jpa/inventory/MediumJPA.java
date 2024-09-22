@@ -65,7 +65,6 @@ public abstract class MediumJPA extends BaseNamedResourceJPA {
     @Schema(
             title = "EAN -- International Article Number",
             description = "The EAN13 number of the medium.",
-            example = "978-5-12345-678-9",
             minLength = 13,
             maxLength = 16,
             required = true
